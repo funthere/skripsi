@@ -22,4 +22,14 @@ class Project extends GenericModel
     {
     	return $this->hasMany('ProjectDocument');
     }
+
+    public function sprints()
+    {
+    	return $this->hasMany('ProjectSprint');
+    }
+
+    public function tasks()
+    {
+    	return $this->hasMany('Task');
+    }
 }

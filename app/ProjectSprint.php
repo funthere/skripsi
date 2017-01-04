@@ -12,4 +12,9 @@ class ProjectSprint extends GenericModel
     {
     	return $this->belongsTo('Project', 'project_id', 'id');
     }
+
+    public function tasks()
+    {
+    	return $this->hasMany('Task');
+    }
 }
