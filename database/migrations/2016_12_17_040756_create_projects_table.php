@@ -20,8 +20,13 @@ class CreateProjectsTable extends Migration
             $table->dateTime('start_datetime');
             $table->dateTime('finish_datetime');
             $table->integer('pic');
+            $table->text('message_board');
             $table->enum('status_progress', ['on_going', 'complete', 'pending']);
             $table->timestamps();
+
+            //Constraints
+            $table->foreign('pic')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +37,10 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
+        Schema::table('projects', function (Blueprint $table) {
+            //Drop Constraint
+            $table->dropForeign('projects_pic_foreign');
+        });
         Schema::drop('projects');
     }
 }
