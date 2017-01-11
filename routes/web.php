@@ -21,4 +21,20 @@ Route::get('/home', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/add-project', 'ProjectController@index');
+
+Auth::routes();
+
+Route::get('/view-project', 'ProjectController@view');
+
+Auth::routes();
+
+Route::get('/message-board', 'ProjectController@message');
+
+Auth::routes();
+
+Route::get('/add-todo-list', 'ProjectController@addTodolist');
+
+Auth::routes();
+
+Route::get('/view-todo-list', 'ProjectController@viewTodolist');
