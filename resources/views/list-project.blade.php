@@ -13,6 +13,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">List Project</div>
+                <span>
+                    <a href='{!! url('/add-project'); !!}'>Add New Project</a>
+                </span>
                 <table border="2" class="table">
                 <tr>
                     <th>Nama proyek</th>
@@ -25,10 +28,10 @@
                     foreach ($datas as $data) {
                         echo "<tr>";
                         echo "<td>" . $data['project_name'] . "</td>";
-                        echo "<td>" . $data['project_name'] . "</td>";
+                        echo "<td>" . $data['description'] . "</td>";
                         echo "<td>" . $data->start_datetime . "</td>";
                         echo "<td>" . $data->finish_datetime . "</td>";
-                        echo "<td>" . $data->pic . "</td>";
+                        echo "<td>" . $data->user->name . "</td>";
                         echo "</tr>";
                     }
                     ?>

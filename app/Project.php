@@ -8,9 +8,9 @@ class Project extends GenericModel
         'project_name', 'description', 'start_datetime', 'finish_datetime', 'pic', 'status_progress'
     ];
 
-    public function pic()
+    public function user()
     {
-    	return $this->belongsTo('User', 'pic', 'id');
+    	return $this->belongsTo('App\User', 'pic', 'id');
     }
 
     public function userProjects()
