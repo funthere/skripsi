@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Project Management Information System',
+    'name' => 'Moonlay Project Management System',
 
     /*
     |--------------------------------------------------------------------------
