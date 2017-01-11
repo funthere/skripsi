@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -24,6 +26,28 @@ class ProjectController extends Controller
     public function index()
     {
         return view('project');
+    }
+
+    public function createProject(Request $request)
+    {
+        // print_r($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
+        $model = new Project;
+        $model->project_name = $request->prjname;
+        $model->description = $request->prjDescription;
+        $model->start_datetime = $request->dateFrom;
+        $model->finish_datetime = $request->dateTo;
+        $model->pic = Auth::user()->id; // Mengambil ID user yang sedang login
+        $model->message_board = "";
+        $model->save();
+        // print_r($model->toArray());die();
+        return redirect('list-project')->with('status', 'Data successfully created!');
+    }
+
+    public function listProject()
+    {
+        $datas = Project::all();
+        // print_r($datas);die();
+        return View('list-project', ['datas' => $datas]);
     }
 
     public function view()

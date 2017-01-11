@@ -13,7 +13,7 @@
                     <tr><td class="col-md-4"> Project Description </td><td class="col-md-4"> Message Board </td><td class="col-md-4"> Todo List </td><td class="col-md-4"> Project Upload </td><td class="col-md-4"> Project Download </td><td class="col-md-4"> Chatting </td></tr>
                 </table>
                 </div>
-
+                {!! Form::open(['route'=>'project.create']) !!}
                 <div class="panel-body">
                    <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Project Name</label> 
@@ -27,7 +27,7 @@
                             <label for="prjDescription" class="col-md-4 control-label">Project Description</label>
 
                             <div class="col-md-7">
-                                <TEXTAREA id="prjDescription" class="form-control"></TEXTAREA> 
+                                <TEXTAREA id="prjDescription" name="prjDescription" class="form-control"></TEXTAREA> 
                             </div>
                     </div>
                     <br/><br/><br/>
@@ -46,12 +46,14 @@
                                 <button type="submit" class="btn btn-primary">
                                     Create
                                 </button>
-                                 <button type="cancel" class="btn btn-primary">
+                                 <button type="reset" class="btn btn-primary">
                                     Cancel
                                 </button>
                             </div>
                     </div>
                 </div>
+                {!! Form::close() !!}
+
             </div>
         </div>
     </div>

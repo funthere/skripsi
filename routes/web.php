@@ -19,22 +19,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Auth::routes();
-
 Route::get('/add-project', 'ProjectController@index');
 
-Auth::routes();
+Route::post('create-project', ['as' => 'project.create', 'uses' => 'ProjectController@createProject']);
+Route::get('list-project', ['as' => 'project.list', 'uses' => 'ProjectController@listProject']);
 
 Route::get('/view-project', 'ProjectController@view');
 
-Auth::routes();
-
 Route::get('/message-board', 'ProjectController@message');
-
-Auth::routes();
 
 Route::get('/add-todo-list', 'ProjectController@addTodolist');
 
-Auth::routes();
-
 Route::get('/view-todo-list', 'ProjectController@viewTodolist');
+
+Route::get('/bootstrap', function () {
+    return view('firstbootstrap');
+});
