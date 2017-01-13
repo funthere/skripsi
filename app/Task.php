@@ -10,16 +10,16 @@ class Task extends GenericModel
 
     public function assignedTo()
     {
-    	return $this->belongsTo('User', 'assigned_to', 'id');
+    	return $this->belongsTo(User::class, 'assigned_to', 'id');
     }
 
     public function project()
     {
-    	return $this->belongsTo('Project', 'project_id', 'id');
+    	return $this->belongsTo(Project::class, 'project_id', 'id');
     }
 
     public function sprint()
     {
-    	return $this->belongsTo('ProjectSprint', 'project_id', 'id');
+    	return $this->belongsTo(ProjectSprint::class, 'project_id', 'id');
     }
 }

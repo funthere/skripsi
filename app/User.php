@@ -29,11 +29,11 @@ class User extends Authenticatable
 
     public function userProject()
     {
-        return $this->hasMany('UserProject');
+        return $this->hasMany(UserProject::class);
     }
 
     public function chats()
     {
-        return $this->hasMany('Chat');
+        return $this->hasMany(Chat::class);
     }
 }

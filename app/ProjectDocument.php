@@ -10,11 +10,11 @@ class ProjectDocument extends GenericModel
 
     public function owner()
     {
-    	return $this->belongsTo('User', 'user_id', 'id');
+    	return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function project()
     {
-    	return $this->belongsTo('Project', 'project_id', 'id');
+    	return $this->belongsTo(Project::class, 'project_id', 'id');
     }
 }

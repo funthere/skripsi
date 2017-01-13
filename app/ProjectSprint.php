@@ -10,11 +10,11 @@ class ProjectSprint extends GenericModel
 
     public function project()
     {
-    	return $this->belongsTo('Project', 'project_id', 'id');
+    	return $this->belongsTo(Project::class, 'project_id', 'id');
     }
 
     public function tasks()
     {
-    	return $this->hasMany('Task');
+    	return $this->hasMany(Task::class);
     }
 }
