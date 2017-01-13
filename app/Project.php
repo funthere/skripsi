@@ -10,26 +10,26 @@ class Project extends GenericModel
 
     public function user()
     {
-    	return $this->belongsTo('App\User', 'pic', 'id');
+    	return $this->belongsTo(User::class, 'pic', 'id');
     }
 
     public function userProjects()
     {
-    	return $this->hasMany('UserProject');
+    	return $this->hasMany(UserProject::class);
     }
 
     public function documents()
     {
-    	return $this->hasMany('ProjectDocument');
+    	return $this->hasMany(ProjectDocument::class);
     }
 
     public function sprints()
     {
-    	return $this->hasMany('ProjectSprint');
+    	return $this->hasMany(ProjectSprint::class);
     }
 
     public function tasks()
     {
-    	return $this->hasMany('Task');
+    	return $this->hasMany(Task::class);
     }
 }
