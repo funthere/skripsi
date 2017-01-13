@@ -56,14 +56,29 @@ class ProjectController extends Controller
         return view('view-project');
     }
 
+    public function viewTeam()
+    {
+        return view('view-project-team');
+    }
+
     public function message()
     {
         return view('message-board');
     }
 
+    public function viewMessage()
+    {
+        return view('view-message-board');
+    }
+
     public function addTodoList()
     {
         return view('add-todo-list');
+    }
+
+    public function upload()
+    {
+        return view('upload');
     }
 
     public function viewTodoList()

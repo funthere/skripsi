@@ -26,11 +26,17 @@ Route::get('list-project', ['as' => 'project.list', 'uses' => 'ProjectController
 
 Route::get('/view-project', 'ProjectController@view');
 
+Route::get('/view-project-team', 'ProjectController@viewTeam');
+
 Route::get('/message-board', 'ProjectController@message');
+
+Route::get('/view-message-board', 'ProjectController@viewMessage');
 
 Route::get('/add-todo-list', 'ProjectController@addTodolist');
 
 Route::get('/view-todo-list', 'ProjectController@viewTodolist');
+
+Route::get('/upload-project', 'ProjectController@upload');
 
 Route::get('/bootstrap', function () {
     return view('firstbootstrap');
