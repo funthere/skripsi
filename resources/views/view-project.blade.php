@@ -43,7 +43,17 @@
                     <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Team Member</label>
                             <div class="col-md-7">
-                                <input id="teamId" type="text" class="form-control" name="teamName" >
+                                <!-- <input id="teamId" type="text" class="form-control" name="teamName" > -->
+                                <select id="team_member" name="team_member[]" class="form-control" multiple>
+                                <?php
+                                    foreach($project->userProjects as $key => $userProject):
+                                        // $chk = in_array($key, $payment_method) ? 'selected' : '';
+                                ?>
+                                    <option value="<?php echo $userProject->user->id; ?>" <?php echo "selected"; ?>><?php echo $userProject->user->name; ?></option>
+                                <?php
+                                    endforeach;
+                                ?>
+                                </select>
                             </div>
                     </div>
                     <br/><br/>
@@ -66,4 +76,27 @@
         </div>
     </div>
 </div>
+
+    <script>
+        $('#team_member').select2({
+            placeholder: "Choose member...",
+            minimumInputLength: 2,
+            ajax: {
+                url: '/users/find',
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
 @endsection
+

@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Sofa\Eloquence\Eloquence;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Eloquence;
+
+    protected $searchableColumns = ['name'];
 
     /**
      * The attributes that are mass assignable.

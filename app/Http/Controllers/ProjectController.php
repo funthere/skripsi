@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\User;
+use App\UserProject;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
 
@@ -43,6 +44,16 @@ class ProjectController extends BaseController
         $model->pic = Auth::user()->id; // Mengambil ID user yang sedang login
         $model->message_board = "";
         $model->save();
+
+        // Hapus dulu user yang di-assign sebelumya ke project ini, biar jangan duplikat.
+        $hapus = UserProject::where('project_id', $model->id)->delete();
+        // Now save appropriate user who assign in this project
+        foreach ($request->team_member as $userId) {
+            $userProject = new UserProject;
+            $userProject->project_id = $model->id;
+            $userProject->user_id = $userId;
+            $userProject->save();
+        }
         // dd($model->toArray());die();
         return redirect('list-project')->with('status', 'Data successfully saved!');
     }
@@ -57,7 +68,7 @@ class ProjectController extends BaseController
 
     public function view($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('userProjects.user')->find($id);
         if ($project) {
             return view('view-project', ['project' => $project]);
         }

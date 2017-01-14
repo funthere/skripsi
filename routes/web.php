@@ -48,3 +48,8 @@ Route::get('/clearing-chat', 'ProjectController@clearing');
 Route::get('/bootstrap', function () {
     return view('firstbootstrap');
 });
+
+Route::get('/tags', function () {
+    return view('tags');
+});
+Route::get('/users/find', 'UserController@find');

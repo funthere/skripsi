@@ -12,8 +12,10 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="/css/select2.min.css" rel="stylesheet" />
      <!-- Bootstrap Core CSS -->
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
 
     <!-- Scripts -->
@@ -80,6 +82,9 @@
                 </div>
             </div>
         </nav>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/select2.min.js"></script>
         
         @if (isset($hideMenu) || Request::is('login'))
 
@@ -113,6 +118,5 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    <!-- <script src="/js/bootstrap.min.js"></script> -->
 </body>
 </html>
