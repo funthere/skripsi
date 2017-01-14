@@ -10,6 +10,7 @@
                 </div>
 
                 {!! Form::open(['route' => ['message-board.save', $project->id]]) !!}
+
                 <div class="panel-body">
                     <div class="form-group">
                     <center>Message Board</center>
