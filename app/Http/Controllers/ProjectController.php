@@ -25,6 +25,7 @@ class ProjectController extends BaseController
      */
     public function index()
     {
+        View::share('hideMenu', true);
         return view('view-project');
     }
 
@@ -49,6 +50,7 @@ class ProjectController extends BaseController
 
     public function listProject()
     {
+        View::share('hideMenu', true);
         $datas = Project::with('user')->get();
         
         return View('list-project', ['datas' => $datas]);
@@ -103,6 +105,7 @@ class ProjectController extends BaseController
 
     public function clearing()
     {
+        View::share('hideMenu', true);
         return view('clearing-chat');
     }
 }
