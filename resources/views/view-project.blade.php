@@ -25,7 +25,6 @@
                     <br/>
                     <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Project Description</label>
-
                             <div class="col-md-7">
                                 <TEXTAREA id="prjDescription" name="prjDescription" class="form-control"></TEXTAREA> 
                             </div>
@@ -42,9 +41,16 @@
                     </div>
                     <br/><br/>
                     <div class="form-group">
+                            <label for="prjDescription" class="col-md-4 control-label">Team Member</label>
+                            <div class="col-md-7">
+                                <input id="teamId" type="text" class="form-control" name="teamName" >
+                            </div>
+                    </div>
+                    <br/><br/>
+                    <div class="form-group">
                             <div class="col-md-8 col-md-offset-6">
                                 <button type="submit" class="btn btn-primary">
-                                    Create
+                                    Save
                                 </button>
                                  <button type="reset" class="btn btn-primary">
                                     Cancel
