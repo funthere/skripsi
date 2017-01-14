@@ -8,10 +8,6 @@
                 <div class="panel-heading">
                 Bateeq
                 </div>
-                <div class="panel-heading">
-                <table border="1">
-                    <tr><td class="col-md-4"> Project Description </td><td class="col-md-4"> Message Board </td><td class="col-md-4"> Todo List </td><td class="col-md-4"> Project Upload </td><td class="col-md-4"> Project Download </td><td class="col-md-4"> Chatting </td></tr>
-                </table>
                 </div>
                 <br/>
                 <center>_______tanggal chat________</center>
