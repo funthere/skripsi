@@ -6,14 +6,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                Bateeq
-                </div>
-                 <div class="panel-heading">
-                <table border="1">
-                    <tr><td class="col-md-4"> Project Description </td><td class="col-md-4"> Message Board </td><td class="col-md-4"> Todo List </td><td class="col-md-4"> Project Upload </td><td class="col-md-4"> Project Download </td><td class="col-md-4"> Chatting </td></tr>
-                </table>
+                {{ $project->project_name or '' }}
                 </div>
 
+                {!! Form::open(['route' => ['message-board.save', $project->id]]) !!}
                 <div class="panel-body">
                     <div class="form-group">
                     <center>Message Board</center>
@@ -21,7 +17,7 @@
                         <label for="message" class="col-md-2 control-label">Message</label>
 
                         <div class="col-md-8">
-                            <TEXTAREA id="prjDescription" class="form-control"></TEXTAREA> 
+                            <TEXTAREA id="prjDescription" name="prjDescription" class="form-control"><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
                         </div>
                     </div>
                     <br/><br/><br/>
@@ -30,12 +26,14 @@
                             <button type="submit" class="btn btn-primary">
                                 Save
                             </button>
-                             <button type="cancel" class="btn btn-primary">
+                            <a href="{!! url('/list-project'); !!}" class="btn btn-primary">
                                 Cancel
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
+                {!! Form::close() !!}
+
             </div>
         </div>
     </div>

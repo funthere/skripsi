@@ -28,7 +28,8 @@ Route::get('/view-project/{id}', 'ProjectController@view');
 
 Route::get('/view-project-team', 'ProjectController@viewTeam');
 
-Route::get('/message-board', 'ProjectController@message');
+Route::get('/message-board/{id}', ['as' => 'message-board.create', 'uses' => 'ProjectController@message']);
+Route::post('/message-board/{id}', ['as' => 'message-board.save', 'uses' => 'ProjectController@messageSave']);
 
 Route::get('/view-message-board', 'ProjectController@viewMessage');
 

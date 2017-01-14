@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use View;
+use View, Redirect;
 
 class ProjectController extends BaseController
 {
@@ -14,7 +14,6 @@ class ProjectController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        // $this->pageId = 22;
         View::share('pageId', $this->pageId);
     }
 
@@ -25,7 +24,7 @@ class ProjectController extends BaseController
      */
     public function index()
     {
-        View::share('hideMenu', true);
+        View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
         return view('view-project');
     }
 
@@ -69,9 +68,22 @@ class ProjectController extends BaseController
         return view('view-project-team');
     }
 
-    public function message()
+    public function message($id)
     {
-        return view('message-board');
+        $project = Project::find($id);
+        if ($project) {
+            return view('message-board')->with(['project' => $project]);
+        }
+    }
+
+    public function messageSave($id)
+    {
+        $project = Project::find($id);
+        if ($project) {
+            $project->message_board = request('prjDescription');
+            $project->save();
+        }
+        return Redirect::route('message-board.create', ['id' => $project->id])->with(['project' => $project]);
     }
 
     public function viewMessage()
@@ -82,7 +94,7 @@ class ProjectController extends BaseController
     public function addTodoList()
     {
         return view('add-todo-list');
-    } 
+    }
     public function viewTodoList()
     {
         return view('view-todo-list');
