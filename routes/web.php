@@ -38,6 +38,12 @@ Route::get('/view-todo-list', 'ProjectController@viewTodolist');
 
 Route::get('/upload-project', 'ProjectController@upload');
 
+Route::get('/download-project', 'ProjectController@download');
+
+Route::get('/chatting', 'ProjectController@chatting');
+
+Route::get('/clearing-chat', 'ProjectController@clearing');
+
 Route::get('/bootstrap', function () {
     return view('firstbootstrap');
 });

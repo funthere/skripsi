@@ -74,6 +74,10 @@ class ProjectController extends Controller
     public function addTodoList()
     {
         return view('add-todo-list');
+    } 
+    public function viewTodoList()
+    {
+        return view('view-todo-list');
     }
 
     public function upload()
@@ -81,8 +85,18 @@ class ProjectController extends Controller
         return view('upload');
     }
 
-    public function viewTodoList()
+    public function download()
     {
-        return view('view-todo-list');
+        return view('download');
+    }
+
+    public function chatting()
+    {
+        return view('chatting');
+    }
+
+    public function clearing()
+    {
+        return view('clearing-chat');
     }
 }
