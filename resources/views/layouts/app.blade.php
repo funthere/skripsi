@@ -81,6 +81,28 @@
             </div>
         </nav>
 
+        <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                         <div class="panel-heading">
+                        <table border="1">
+                            <tr>
+                            <td class="col-md-4"> Project Description </td>
+                            <td class="col-md-4"> Message Board </td>
+                            <td class="col-md-4"> Todo List </td>
+                            <td class="col-md-4"> Project Upload </td>
+                            <td class="col-md-4"> Project Download </td>
+                            <td class="col-md-4"> Chatting </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         @yield('content')
     </div>
 

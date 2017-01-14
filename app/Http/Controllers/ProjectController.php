@@ -6,17 +6,16 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use View;
 
-class ProjectController extends Controller
+class ProjectController extends BaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    public $pageId = 1;
     public function __construct()
     {
-        $this->middleware('auth');
+        parent::__construct();
+        // $this->pageId = 22;
+        View::share('pageId', $this->pageId);
     }
 
     /**
@@ -29,10 +28,14 @@ class ProjectController extends Controller
         return view('view-project');
     }
 
-    public function createProject(Request $request)
+    public function save(Request $request)
     {
         // dd($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
-        $model = new Project;
+        if (!empty($request->id)) {
+            $model = Project::find($request->id);
+        } else {
+            $model = new Project;
+        }
         $model->project_name = $request->prjname;
         $model->description = $request->prjDescription;
         $model->start_datetime = $request->dateFrom;
@@ -41,19 +44,22 @@ class ProjectController extends Controller
         $model->message_board = "";
         $model->save();
         // dd($model->toArray());die();
-        return redirect('list-project')->with('status', 'Data successfully created!');
+        return redirect('list-project')->with('status', 'Data successfully saved!');
     }
 
     public function listProject()
     {
-        $datas = Project::all();
+        $datas = Project::with('user')->get();
         
         return View('list-project', ['datas' => $datas]);
     }
 
-    public function view()
+    public function view($id)
     {
-        return view('view-project');
+        $project = Project::find($id);
+        if ($project) {
+            return view('view-project', ['project' => $project]);
+        }
     }
 
     public function message()

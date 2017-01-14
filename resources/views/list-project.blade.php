@@ -25,15 +25,15 @@
                     <th>PIC</th>
                 </tr>
                     <?php
-                    foreach ($datas as $data) {
-                        echo "<tr>";
-                        echo "<td>" . $data['project_name'] . "</td>";
-                        echo "<td>" . $data['description'] . "</td>";
-                        echo "<td>" . $data->start_datetime . "</td>";
-                        echo "<td>" . $data->finish_datetime . "</td>";
-                        echo "<td>" . $data->user->name . "</td>";
-                        echo "</tr>";
-                    }
+                    foreach ($datas as $data) { ?>
+                        <tr>
+                        <td><a href='{!! url('/view-project/'.$data['id']); !!}'> <?php echo $data['project_name'] ?> </a></td>
+                        <td><?php echo $data['description'] ?></td>
+                        <td><?php echo $data->start_datetime ?></td>
+                        <td><?php echo $data->finish_datetime ?></td>
+                        <td><?php echo $data->user->name ?></td>
+                        </tr>
+                    <?php }
                     ?>
                 </table>
             </div>

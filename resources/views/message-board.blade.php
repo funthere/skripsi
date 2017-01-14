@@ -18,22 +18,22 @@
                     <div class="form-group">
                     <center>Message Board</center>
                     <br/>
-                            <label for="message" class="col-md-4 control-label">Message</label>
+                        <label for="message" class="col-md-2 control-label">Message</label>
 
-                            <div class="col-md-7">
-                                <TEXTAREA id="prjDescription" class="form-control"></TEXTAREA> 
-                            </div>
+                        <div class="col-md-8">
+                            <TEXTAREA id="prjDescription" class="form-control"></TEXTAREA> 
+                        </div>
                     </div>
                     <br/><br/><br/>
                     <div class="form-group">
-                            <div class="col-md-8 col-md-offset-6">
-                                <button type="submit" class="btn btn-primary">
-                                    Save
-                                </button>
-                                 <button type="cancel" class="btn btn-primary">
-                                    Cancel
-                                </button>
-                            </div>
+                        <div class="col-md-8 col-md-offset-6">
+                            <button type="submit" class="btn btn-primary">
+                                Save
+                            </button>
+                             <button type="cancel" class="btn btn-primary">
+                                Cancel
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
