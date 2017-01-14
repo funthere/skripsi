@@ -33,7 +33,7 @@ class ProjectController extends BaseController
     {
         // dd($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
         if (!empty($request->id)) {
-            $model = Project::find($request->id);
+            $model = Project::with('userProjects')->find($request->id);
         } else {
             $model = new Project;
         }
@@ -46,13 +46,20 @@ class ProjectController extends BaseController
         $model->save();
 
         // Hapus dulu user yang di-assign sebelumya ke project ini, biar jangan duplikat.
-        $hapus = UserProject::where('project_id', $model->id)->delete();
+        // $hapus = UserProject::where('project_id', $model->id)->delete();
         // Now save appropriate user who assign in this project
-        foreach ($request->team_member as $userId) {
-            $userProject = new UserProject;
-            $userProject->project_id = $model->id;
-            $userProject->user_id = $userId;
-            $userProject->save();
+        // dd($model->userProjects->pluck('user_id')->toArray());
+        if (!empty($request->team_member)) {
+            foreach ($request->team_member as $userId) {
+                if (in_array($userId, $model->userProjects->pluck('user_id')->toArray())) {
+                    // Jika user sudah ada, then do nothing
+                } else {
+                    $userProject = new UserProject;
+                    $userProject->project_id = $model->id;
+                    $userProject->user_id = $userId;
+                    $userProject->save();
+                }
+            }
         }
         // dd($model->toArray());die();
         return redirect('list-project')->with('status', 'Data successfully saved!');

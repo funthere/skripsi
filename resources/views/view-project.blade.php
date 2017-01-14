@@ -45,13 +45,15 @@
                             <div class="col-md-7">
                                 <!-- <input id="teamId" type="text" class="form-control" name="teamName" > -->
                                 <select id="team_member" name="team_member[]" class="form-control" multiple>
-                                <?php
+                                <?php 
+                                    if (isset($project)) :
                                     foreach($project->userProjects as $key => $userProject):
                                         // $chk = in_array($key, $payment_method) ? 'selected' : '';
                                 ?>
                                     <option value="<?php echo $userProject->user->id; ?>" <?php echo "selected"; ?>><?php echo $userProject->user->name; ?></option>
                                 <?php
                                     endforeach;
+                                    endif;
                                 ?>
                                 </select>
                             </div>
