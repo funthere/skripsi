@@ -46,7 +46,12 @@ class ProjectController extends BaseController
         $model->save();
 
         // Hapus dulu user yang di-assign sebelumya ke project ini, biar jangan duplikat.
-        // $hapus = UserProject::where('project_id', $model->id)->delete();
+        $teamMember = $model->userProjects->pluck('user_id')->toArray();
+        foreach ($teamMember as $memberId) {
+            if (!in_array($memberId, $request->team_member)) {
+                $hapus = UserProject::where(['project_id' => $model->id, 'user_id' => $memberId])->delete();
+            }
+        }
         // Now save appropriate user who assign in this project
         // dd($model->userProjects->pluck('user_id')->toArray());
         if (!empty($request->team_member)) {
