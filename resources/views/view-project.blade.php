@@ -24,7 +24,6 @@
                         <br/>
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Project Description</label>
-
                             <div class="col-md-7">
                                 <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" required><?php echo isset($project) ? $project->description : '' ?></TEXTAREA> 
                             </div>
@@ -38,8 +37,16 @@
                                 <label for="to">&nbsp;To</label>
                                 <input id="dateTo" type="date" name="dateTo" value="{{ isset($project) ? $project->finish_datetime : '' }}" required>
                             </div>
+
                         </div>
                         <br/><br/>
+                    <div class="form-group">
+                            <label for="prjDescription" class="col-md-4 control-label">Team Member</label>
+                            <div class="col-md-7">
+                                <input id="teamId" type="text" class="form-control" name="teamName" >
+                            </div>
+                    </div>
+                    <br/><br/>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-6">
                                 <button type="submit" class="btn btn-primary">

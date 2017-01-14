@@ -62,18 +62,47 @@ class ProjectController extends BaseController
         }
     }
 
+    public function viewTeam()
+    {
+        return view('view-project-team');
+    }
+
     public function message()
     {
         return view('message-board');
     }
 
+    public function viewMessage()
+    {
+        return view('view-message-board');
+    }
+
     public function addTodoList()
     {
         return view('add-todo-list');
-    }
-
+    } 
     public function viewTodoList()
     {
         return view('view-todo-list');
+    }
+
+    public function upload()
+    {
+        return view('upload');
+    }
+
+    public function download()
+    {
+        return view('download');
+    }
+
+    public function chatting()
+    {
+        return view('chatting');
+    }
+
+    public function clearing()
+    {
+        return view('clearing-chat');
     }
 }
