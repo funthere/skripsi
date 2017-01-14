@@ -58,7 +58,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img src="/image/people.png" width="30" height="30">{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -93,12 +93,12 @@
                              <div class="panel-heading">
                             <table border="1">
                                 <tr>
-                                <td class="col-md-4"> Project Description </td>
-                                <td class="col-md-4"> Message Board </td>
-                                <td class="col-md-4"> Todo List </td>
-                                <td class="col-md-4"> Project Upload </td>
-                                <td class="col-md-4"> Project Download </td>
-                                <td class="col-md-4"> Chatting </td>
+                                <td class="col-md-4"><img src="/image/project.png" width="40" height="40">Project Description </td>
+                                <td class="col-md-4"><img src="/image/message-board.png" width="40" height="40">Message Board </td>
+                                <td class="col-md-4"><img src="/image/todo-list.png" width="40" height="40">Todo List </td>
+                                <td class="col-md-4"><img src="/image/upload.png" width="40" height="40">Project Upload </td>
+                                <td class="col-md-4"><img src="/image/download.png" width="40" height="40">Project Download </td>
+                                <td class="col-md-4"><img src="/image/chatting.jpg" width="40" height="40">Chatting </td>
                                 </tr>
                             </table>
                             </div>
