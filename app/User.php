@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
     use Eloquence;
 
-    protected $searchableColumns = ['name'];
+    protected $searchableColumns = ['fullname'];
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'fullname', 'email', 'password',
     ];
 
     /**

@@ -36,10 +36,10 @@
                    <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Task</label> 
                             <div class="col-md-4">
-                                <input id="task" type="text" class="form-control" name="task" >
+                                <input id="task_name" type="text" class="form-control" name="task_name" placeholder="Task Name">
                             </div>
                              <div class="col-md-4">
-                                <input id="task" type="text" class="form-control" name="task" >
+                                <input id="assigned_to" type="text" class="form-control" name="assigned_to" placeholder="Assigned To">
                             </div>
                     </div>
                     <br/><br/>

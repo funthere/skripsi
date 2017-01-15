@@ -25,14 +25,14 @@ class UserController extends BaseController
             return \Response::json([]);
         }
 
-        $tags = User::search($term)->limit(5)->get();
+        $users = User::search($term)->limit(5)->get();
 
-        $formatted_tags = [];
+        $formatted_users = [];
 
-        foreach ($tags as $tag) {
-            $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+        foreach ($users as $user) {
+            $formatted_users[] = ['id' => $user->id, 'text' => $user->fullname];
         }
 
-        return \Response::json($formatted_tags);
+        return \Response::json($formatted_users);
     }
 }
