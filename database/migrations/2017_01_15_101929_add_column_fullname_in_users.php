@@ -13,7 +13,7 @@ class AddColumnFullnameInUsers extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE `users` ADD `fullname` VARCHAR(255) NOT NULL AFTER `username`")
+        DB::statement("ALTER TABLE `users` ADD `fullname` VARCHAR(255) NOT NULL AFTER `username`");
     }
 
     /**

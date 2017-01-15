@@ -31,7 +31,7 @@
                         <td><?php echo $data['description'] ?></td>
                         <td><?php echo $data->start_datetime ?></td>
                         <td><?php echo $data->finish_datetime ?></td>
-                        <td><?php echo $data->user->name ?></td>
+                        <td><?php echo $data->user->fullname ?></td>
                         </tr>
                     <?php }
                     ?>

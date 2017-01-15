@@ -50,7 +50,7 @@
                                     foreach($project->userProjects as $key => $userProject):
                                         // $chk = in_array($key, $payment_method) ? 'selected' : '';
                                 ?>
-                                    <option value="<?php echo $userProject->user->id; ?>" <?php echo "selected"; ?>><?php echo $userProject->user->name; ?></option>
+                                    <option value="<?php echo $userProject->user->id; ?>" <?php echo "selected"; ?>><?php echo $userProject->user->fullname; ?></option>
                                 <?php
                                     endforeach;
                                     endif;
