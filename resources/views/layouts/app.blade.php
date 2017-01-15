@@ -83,7 +83,7 @@
             </div>
         </nav>
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="/js/bootstrap.min.js"></script> -->
     <script src="/js/select2.min.js"></script>
         
         @if (isset($hideMenu) || Request::is('login'))

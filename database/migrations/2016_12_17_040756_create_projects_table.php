@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->dateTime('start_datetime');
             $table->dateTime('finish_datetime');
-            $table->integer('pic');
+            $table->integer('pic')->unsigned();
             $table->text('message_board');
             $table->enum('status_progress', ['on_going', 'complete', 'pending']);
             $table->timestamps();
