@@ -24,6 +24,6 @@ class UpdateTableProjectSprints extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("ALTER TABLE `project_sprints` ADD `description` TEXT NULL DEFAULT NULL AFTER `sprint`;");
     }
 }
