@@ -31,11 +31,11 @@ Route::get('/view-project-team', 'ProjectController@viewTeam');
 Route::get('/message-board/{id}', ['as' => 'message-board.create', 'uses' => 'ProjectController@message']);
 Route::post('/message-board/{id}', ['as' => 'message-board.save', 'uses' => 'ProjectController@messageSave']);
 
-Route::get('/view-message-board', 'ProjectController@viewMessage');
+Route::get('/view-todo-list/{project_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTodolist']);
+Route::get('/add-todo-list/{project_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTodolist']);
+Route::post('/add-todo-list/{project_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTodolist']);
 
-Route::get('/add-todo-list', 'ProjectController@addTodolist');
-
-Route::get('/view-todo-list', 'ProjectController@viewTodolist');
+Route::get('/view-todo-list/{id}', 'TaskController@viewTodolist');
 
 Route::get('/upload-project', 'ProjectController@upload');
 
