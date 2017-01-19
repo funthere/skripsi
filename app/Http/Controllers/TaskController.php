@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\Project;
+use App\ProjectSprint;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
 
@@ -17,37 +18,73 @@ class TaskController extends BaseController
         View::share('pageId', $this->pageId);
     }
 
-    public function viewTodoList($projectId)
+    public function viewSprint($projectId)
     {
-        $datas = Task::where(['project_id' => $projectId])->get();
-        $datas = $datas->groupBy('sprint_id');
-        // dd($datas);
-        return view('list-task', ['datas' => $datas, 'projectId' => $projectId]);
+        $project = Project::find($projectId);
+        if ($project) {
+            // dd($project->sprints);
+            return view('list-sprint', ['project' => $project]);
+        }
     }
 
-    public function addTodolist($projectId)
+    public function createSprint($projectId)
     {
-        $project = Project::with('userProjects', 'tasks')->find($projectId);
+        $project = Project::find($projectId);
+        if ($project) {
+            $counter = ProjectSprint::where('project_id', $project->id)->count();
+            $sprint = new ProjectSprint;
+            $sprint->project_id = $project->id;
+            $sprint->sprint = $counter + 1;
+            $sprint->save();
+            // return view('list-sprint', ['project' => $project]);
+            return Redirect::route('sprint.list', ['project' => $project])->with('status', 'Data successfully saved!');
+        }
+    }
+
+    public function viewTodoList($projectId, $sprintId)
+    {
+        $datas = Task::where(['project_id' => $projectId, 'sprint_id' => $sprintId])->get();
+        $datas = $datas->groupBy('sprint_id');
+        // dd($datas);
+        return view('list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprintId' => $sprintId]);
+    }
+
+    public function addTodolist($projectId, $sprintId)
+    {
+        $project = Project::with('userProjects', 'sprints')->find($projectId);
         if (!$project) {
             // not found
         } else {
             $task = new Task;
-            return view('add-todo-list', ['project' => $project, 'task' => $task]);
+            return view('add-todo-list', ['project' => $project, 'task' => $task, 'sprintId' => $sprintId]);
         }
     }
 
-    public function saveTodolist($projectId)
+    public function saveTodolist($projectId, $sprintId)
     {
         $project = Project::find($projectId);
         $task = new Task;
         $task->project_id = $projectId;
-        $task->sprint_id = 1; // masih hardcode
+        $task->sprint_id = $sprintId;
         $task->assigned_to = request('assigned_to');
         $task->activity = request('task_name');
         $task->deadline_datetime = request('deadline');
         $task->description = request('description');
         $result = $task->save();
 
-        return Redirect::route('task.list', ['project' => $project])->with('status', 'Data successfully saved!');
+        return redirect()->route('task.list', ['project_id' => $project->id, 'sprint_id' => $sprintId])->with('status', 'Data successfully saved!');
+    }
+
+    public function changeStatus($taskId) {
+        $task = Task::find($taskId);
+        if ($task) {
+            if ($task->status == Task::STATUS_ACTIVE) {
+                $task->status = Task::STATUS_DONE;
+            } else {
+                $task->status = Task::STATUS_ACTIVE;
+            }
+        }
+        $result = $task->save();
+        return back()->with('status', 'Data successfully saved!');
     }
 }

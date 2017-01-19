@@ -6,22 +6,16 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                {{ isset($project) ? $project->project_name : '' }}
+                {{ isset($project) ? $project->project_name : '' }} {{ isset($sprintId) ? ' => Sprint ' . $sprintId : '' }}
                 </div>
 
-                {!! Form::open(['route' => ['task.create', $project->id]]) !!}
+                {!! Form::open(['route' => ['task.create', $project->id, $sprintId]]) !!}
 
                     <div class="panel-body">
                     <center>Todo List </center>
                     <br/><br/>
-                     <div class="form-group">
-                                <label for="email" class="col-md-4 control-label">Sprint</label> 
-                                <div class="col-md-7"> 
-                                </div>
-                        </div>
-                     <br/>
                       <div class="form-group">
-                                <label for="email" class="col-md-4 control-label">Sprint1</label> 
+                                <label for="email" class="col-md-4 control-label">Sprint {{ $sprintId }}</label> 
                                 <div class="col-md-7"> 
                                 </div>
                         </div>
