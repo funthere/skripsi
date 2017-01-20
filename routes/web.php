@@ -24,7 +24,7 @@ Route::get('/add-project', 'ProjectController@index');
 Route::post('create-project', ['as' => 'project.create', 'uses' => 'ProjectController@save']);
 Route::get('list-project', ['as' => 'project.list', 'uses' => 'ProjectController@listProject']);
 
-Route::get('/view-project/{id}', 'ProjectController@view');
+Route::get('/view-project/{id}', ['as' => 'project.view', 'uses' => 'ProjectController@view']);
 
 Route::get('/view-project-team', 'ProjectController@viewTeam');
 

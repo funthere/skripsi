@@ -16,6 +16,11 @@ class TaskController extends BaseController
     {
         parent::__construct();
         View::share('pageId', $this->pageId);
+        
+        $url = request()->url();
+        $projectId = (substr($url, -1));
+        $array = (explode('/', $url));
+        view()->share('projectId', $array[4]);
     }
 
     public function viewSprint($projectId)

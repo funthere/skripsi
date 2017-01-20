@@ -32,8 +32,10 @@ class ProjectController extends BaseController
     public function save(Request $request)
     {
         // dd($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
+        $isUpdate = false;
         if (!empty($request->id)) {
             $model = Project::with('userProjects')->find($request->id);
+            $isUpdate = true;
         } else {
             $model = new Project;
         }
@@ -67,6 +69,9 @@ class ProjectController extends BaseController
             }
         }
         // dd($model->toArray());die();
+        if ($isUpdate) {
+            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Data successfully saved!');
+        }
         return redirect('list-project')->with('status', 'Data successfully saved!');
     }
 

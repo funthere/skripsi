@@ -15,5 +15,10 @@ class BaseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        $url = request()->url();
+        $projectId = (substr($url, -1));
+        $array = (explode('/', $url));
+        view()->share('projectId', $array[4]);
     }
 }
