@@ -23,35 +23,12 @@ class TaskController extends BaseController
         view()->share('projectId', $array[4]);
     }
 
-    public function viewSprint($projectId)
-    {
-        $project = Project::find($projectId);
-        if ($project) {
-            // dd($project->sprints);
-            return view('list-sprint', ['project' => $project]);
-        }
-    }
-
-    public function createSprint($projectId)
-    {
-        $project = Project::find($projectId);
-        if ($project) {
-            $counter = ProjectSprint::where('project_id', $project->id)->count();
-            $sprint = new ProjectSprint;
-            $sprint->project_id = $project->id;
-            $sprint->sprint = $counter + 1;
-            $sprint->save();
-            // return view('list-sprint', ['project' => $project]);
-            return Redirect::route('sprint.list', ['project' => $project])->with('status', 'Data successfully saved!');
-        }
-    }
-
     public function viewTodoList($projectId, $sprintId)
     {
         $datas = Task::where(['project_id' => $projectId, 'sprint_id' => $sprintId])->get();
         $datas = $datas->groupBy('sprint_id');
         // dd($datas);
-        return view('list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprintId' => $sprintId]);
+        return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprintId' => $sprintId]);
     }
 
     public function addTodolist($projectId, $sprintId)
@@ -61,7 +38,7 @@ class TaskController extends BaseController
             // not found
         } else {
             $task = new Task;
-            return view('add-todo-list', ['project' => $project, 'task' => $task, 'sprintId' => $sprintId]);
+            return view('task.add-todo-list', ['project' => $project, 'task' => $task, 'sprintId' => $sprintId]);
         }
     }
 
@@ -80,7 +57,8 @@ class TaskController extends BaseController
         return redirect()->route('task.list', ['project_id' => $project->id, 'sprint_id' => $sprintId])->with('status', 'Data successfully saved!');
     }
 
-    public function changeStatus($taskId) {
+    public function changeStatus($taskId)
+    {
         $task = Task::find($taskId);
         if ($task) {
             if ($task->status == Task::STATUS_ACTIVE) {

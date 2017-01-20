@@ -19,6 +19,8 @@ class BaseController extends Controller
         $url = request()->url();
         $projectId = (substr($url, -1));
         $array = (explode('/', $url));
-        view()->share('projectId', $array[4]);
+        if (isset($array[4])) {
+            view()->share('projectId', $array[4]);
+        }
     }
 }

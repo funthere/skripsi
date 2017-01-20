@@ -21,7 +21,7 @@
                 <table border="2" class="table">
                 <tr>
                     <th>Sprint</th>
-                    <th>Deskripsi</th>
+                    <th>Summary</th>
                 </tr>
                     <?php
                     foreach ($project->sprints as $sprint) { ?>

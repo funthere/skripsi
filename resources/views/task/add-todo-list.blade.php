@@ -39,7 +39,7 @@
                                     <select name="assigned_to" class="form-input" id="inputStatus" required>
                                         <option value="">--- select member --</option>
                                             @foreach($project->userProjects as $userProject)
-                                                <option value="{{$userProject->id}}" {{(($userProject->user_id == $task->user_id) ? "selected" : "")}}>{{$userProject->user->fullname}}</option>
+                                                <option value="{{$userProject->user_id}}" {{(($userProject->user_id == $task->user_id) ? "selected" : "")}}>{{$userProject->user->fullname}}</option>
                                             @endforeach
                                     </select>
                                 </div>

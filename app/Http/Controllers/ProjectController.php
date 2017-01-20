@@ -26,7 +26,7 @@ class ProjectController extends BaseController
     public function index()
     {
         View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
-        return view('view-project');
+        return view('project.view-project');
     }
 
     public function save(Request $request)
@@ -80,31 +80,31 @@ class ProjectController extends BaseController
         View::share('hideMenu', true);
         $datas = Project::with('user')->get();
         
-        return View('list-project', ['datas' => $datas]);
+        return View('project.list-project', ['datas' => $datas]);
     }
 
     public function view($id)
     {
         $project = Project::with('userProjects.user')->find($id);
         if ($project) {
-            return view('view-project', ['project' => $project]);
+            return view('project.view-project', ['project' => $project]);
         }
     }
 
     public function viewTeam()
     {
-        return view('view-project-team');
+        return view('project.view-project-team');
     }
 
-    public function message($id)
+    public function messageBoard($id)
     {
         $project = Project::find($id);
         if ($project) {
-            return view('message-board')->with(['project' => $project]);
+            return view('project.message-board')->with(['project' => $project]);
         }
     }
 
-    public function messageSave($id)
+    public function messageBoardSave($id)
     {
         $project = Project::find($id);
         if ($project) {
@@ -138,7 +138,7 @@ class ProjectController extends BaseController
         return view('download');
     }
 
-    public function chatting()
+    public function chatting($id)
     {
         return view('chatting');
     }

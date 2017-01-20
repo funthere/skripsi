@@ -28,12 +28,12 @@ Route::get('/view-project/{id}', ['as' => 'project.view', 'uses' => 'ProjectCont
 
 Route::get('/view-project-team', 'ProjectController@viewTeam');
 
-Route::get('/message-board/{id}', ['as' => 'message-board.create', 'uses' => 'ProjectController@message']);
-Route::post('/message-board/{id}', ['as' => 'message-board.save', 'uses' => 'ProjectController@messageSave']);
+Route::get('/message-board/{id}', ['as' => 'message-board.create', 'uses' => 'ProjectController@messageBoard']);
+Route::post('/message-board/{id}', ['as' => 'message-board.save', 'uses' => 'ProjectController@messageBoardSave']);
 
-Route::get('/view-sprint/{project_id}', ['as' => 'sprint.list', 'uses' => 'TaskController@viewSprint']);
-Route::get('/add-sprint/{project_id}', ['as' => 'sprint.add', 'uses' => 'TaskController@createSprint']);
-Route::post('/add-sprint/{project_id}', ['as' => 'sprint.save', 'uses' => 'TaskController@saveSprint']);
+Route::get('/view-sprint/{project_id}', ['as' => 'sprint.list', 'uses' => 'SprintController@viewSprint']);
+Route::get('/add-sprint/{project_id}', ['as' => 'sprint.add', 'uses' => 'SprintController@createSprint']);
+// Route::post('/add-sprint/{project_id}', ['as' => 'sprint.save', 'uses' => 'SprintController@saveSprint']);
 
 Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTodolist']);
 Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTodolist']);
@@ -46,7 +46,7 @@ Route::get('/upload-project', 'ProjectController@upload');
 
 Route::get('/download-project', 'ProjectController@download');
 
-Route::get('/chatting', 'ProjectController@chatting');
+Route::get('/chatting/{project_id}', ['as' => 'chatting', 'uses' => 'ProjectController@chatting']);
 
 Route::get('/clearing-chat', 'ProjectController@clearing');
 
