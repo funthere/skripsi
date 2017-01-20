@@ -8,6 +8,7 @@ use App\Project;
 use App\ProjectSprint;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
+use DB;
 
 class SprintController extends BaseController
 {
@@ -47,5 +48,24 @@ class SprintController extends BaseController
             // return view('list-sprint', ['project' => $project]);
             return Redirect::route('sprint.list', ['project' => $project])->with('status', 'Sprint added!');
         }
+    }
+
+    public function delete($sprintId)
+    {
+        // return back()->with('status', 'Data successfully deleted!');
+        DB::transaction(function () use ($sprintId) {
+            $sprint = ProjectSprint::find($sprintId);
+            // First, delete task with this current sprint, then delete this sprint.
+            $deleteTask = Task::where('sprint_id', $sprint->id)->delete();
+            if ($deleteTask) {
+                $deleteSprint = $sprint->delete();
+            }
+
+            if ((!$deleteTask) || (!$deleteSprint)) {
+                throw new \Exception('Something went wrong!');
+                // return back()->with('status', 'Something went wrong!');
+            }
+            return back()->with('status', 'Sprint deleted!');
+        });
     }
 }

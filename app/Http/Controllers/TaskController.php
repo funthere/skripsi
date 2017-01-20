@@ -70,4 +70,13 @@ class TaskController extends BaseController
         $result = $task->save();
         return back()->with('status', 'Data successfully saved!');
     }
+
+    public function delete($taskId)
+    {
+        $task = Task::find($taskId);
+        if ($task) {
+            $task->delete();
+        }
+        return back()->with('status', 'Data successfully deleted!');
+    }
 }

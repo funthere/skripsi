@@ -38,7 +38,9 @@
                                     <td><?php echo $task->assignedTo && $task->assignedTo->fullname ? $task->assignedTo->fullname : ''; ?></td>
                                     <td><?php echo $task->deadline_datetime ? $task->deadline_datetime : ''; ?></td>
                                     <td><label class="green" style="<?php echo $task->status == "done" ? "color: white; background-color: forestgreen;" : ''; ?>"><?php echo $task->status; ?></label></td>
-                                    <td><a class="btn btn-primary" href='{!! url('/change-status-task/'.$task->id); !!}'> <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a></td>
+                                    <td><a class="btn btn-primary" href='{!! url('/change-status-task/'.$task->id); !!}'> <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>
+                                        <a class="btn btn-primary" href='{!! url('/delete-task/'.$task->id); !!}'> Delete </a>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         <?php } ?>

@@ -22,12 +22,16 @@
                 <tr>
                     <th>Sprint</th>
                     <th>Summary</th>
+                    <th>Action</th>
                 </tr>
                     <?php
                     foreach ($project->sprints as $sprint) { ?>
                         <tr>
                         <td><a class="btn btn-primary" href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> See task in Sprint <?php echo $sprint['sprint'] ?> </a></td>
                         <td><?php echo $sprint['description'] ?></td>
+                        <td>
+                            <a class="btn btn-primary" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> Delete </a>
+                        </td>
                         </tr>
                     <?php }
                     ?>
