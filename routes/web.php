@@ -39,8 +39,10 @@ Route::get('/delete-sprint/{task_id}', ['as' => 'sprint.delete', 'uses' => 'Spri
 Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTask']);
 Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTask']);
 Route::post('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTask']);
+Route::get('/edit-todo-list/{task_id}', ['as' => 'task.edit', 'uses' => 'TaskController@editTask']);
 Route::get('/change-status-task/{task_id}', ['as' => 'task.changestatus', 'uses' => 'TaskController@changeStatus']);
 Route::get('/delete-task/{task_id}', ['as' => 'task.delete', 'uses' => 'TaskController@delete']);
+Route::get('/get-member-task-ajax', ['as' => 'task.member-task', 'uses' => 'TaskController@memberTaskAjax']);
 
 Route::get('/view-todo-list/{id}', 'TaskController@viewTodolist');
 

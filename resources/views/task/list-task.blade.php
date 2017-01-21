@@ -17,6 +17,22 @@
                 <span>
                     <a href='{!! url('/add-todo-list', ['projectId' => $projectId, 'sprintId' => $sprint->id]); !!}'>Add New Task</a>
                 </span>
+                @if (auth()->user()->role == "member")
+                   <div class="form-group">
+                        <label for="email" class="col-md-4 control-label">Select Sprint</label> 
+                         <div class="col-md-4">
+                            <select name="sprint" class="form-input" id="sprint" required>
+                                <option value="">--- select sprint --</option>
+                                    @foreach($project->sprints as $sprint)
+                                        <option value="{{ $sprint->id }}"}}>{{ "Sprint " . $sprint->sprint }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div id="content-member">
+                        
+                    </div>
+                @else
                 <table class="table">
                 <tr>
                     <th>Nama task</th>
@@ -39,6 +55,7 @@
                                     <td>
                                         <a title="delete" align="right" class="" href='{!! url('/delete-task/'.$task->id); !!}'><img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a>
                                         <a class="btn btn-primary" href='{!! url('/change-status-task/'.$task->id); !!}'> <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>
+                                        <a class="btn btn-primary" href='{!! url('/edit-todo-list/'.$task->id); !!}'> Edit </a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -46,8 +63,28 @@
 
                     <?php } ?>
                 </table>
+                @endif
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+@section('script-footer')
+<script>
+    $(document).ready(function() {
+        $('#sprint').change(function(){
+            if ($(this).val() != "") {
+                // alert($(this).val());
+                $.get("{{ url('get-member-task-ajax')}}", { sprint_id: $(this).val() },
+                    function(data) {
+
+                        $('#content-member').empty();
+                        $('#content-member').append(data);
+
+                });
+            }
+        });
+    });
+</script>
+@stop

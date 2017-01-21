@@ -10,9 +10,7 @@
                 </div>
 
                 {!! Form::open(['route' => ['task.create', $project->id, $sprint->id]]) !!}
-                    @if(isset($task))
-                        <input type="hidden" name="taskId" value="{!! $task->id !!}">
-                    @endif
+
                     <div class="panel-body">
                     <center>Todo List </center>
                       <div class="form-group">
@@ -28,13 +26,13 @@
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Task</label> 
                             <div class="col-md-4">
-                                <input id="task_name" type="text" class="form-control" name="task_name" value="{{ isset($task) ? $task->activity : '' }}" placeholder="Task Name" required="required">
+                                <input id="task_name" type="text" class="form-control" name="task_name" placeholder="Task Name" required="required">
                             </div>
                              <div class="col-md-4">
                                 <select name="assigned_to" class="form-input" id="inputStatus" required>
                                     <option value="">--- assigned to --</option>
                                         @foreach($project->userProjects as $userProject)
-                                            <option value="{{$userProject->user_id}}" {{(($userProject->user_id == $task->assigned_to) ? 'selected' : "")}}>{{$userProject->user->fullname}}</option>
+                                            <option value="{{$userProject->user_id}}" {{(($userProject->user_id == $task->user_id) ? "selected" : "")}}>{{$userProject->user->fullname}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -44,7 +42,7 @@
                         <div class="form-group">
                             <label for="description" class="col-md-4 control-label">Description</label>
                             <div class="col-md-7">
-                                <TEXTAREA id="description" name="description" class="form-control" required>{{ isset($task) ? $task->description : '' }}</TEXTAREA> 
+                                <TEXTAREA id="description" name="description" class="form-control" required></TEXTAREA> 
                             </div>
                         </div>
                         <br><br><br>
@@ -52,7 +50,7 @@
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Deadline</label>
                             <div class="col-md-8">
-                                <input id="deadline" type="date" name="deadline" value="{{ isset($task) ? $task->deadline_datetime : '' }}">
+                                <input id="deadline" type="date" name="deadline" >
         
                             </div>
                         </div>

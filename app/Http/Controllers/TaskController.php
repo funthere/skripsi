@@ -20,7 +20,10 @@ class TaskController extends BaseController
         $url = request()->url();
         $projectId = (substr($url, -1));
         $array = (explode('/', $url));
-        view()->share('projectId', $array[4]);
+        // dd(count($array));
+        if (count($array) > 5) {
+            view()->share('projectId', $array[4]);
+        }
     }
 
     public function viewTask($projectId, $sprintId)
@@ -29,6 +32,10 @@ class TaskController extends BaseController
         $sprint = ProjectSprint::find($sprintId);
         $datas = $datas->groupBy('sprint_id');
         // dd($datas);
+        if (auth()->user()->role == "member") {
+            $project = Project::with('sprints.tasks')->find($projectId);
+            return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprint' => $sprint, 'project' => $project]);
+        }
         return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprint' => $sprint]);
     }
 
@@ -47,7 +54,12 @@ class TaskController extends BaseController
     public function saveTask($projectId, $sprintId)
     {
         $project = Project::find($projectId);
-        $task = new Task;
+        $taskId = request()->get('taskId');
+        if (!empty($taskId)) {
+            $task = Task::find($taskId);
+        } else {
+            $task = new Task;
+        }
         $task->project_id = $projectId;
         $task->sprint_id = $sprintId;
         $task->assigned_to = request('assigned_to');
@@ -80,5 +92,40 @@ class TaskController extends BaseController
             $task->delete();
         }
         return back()->with('status', 'Data successfully deleted!');
+    }
+
+    public function editTask($taskId)
+    {
+        $task = Task::find($taskId);
+        // dd($task);
+        if ($task) {
+            $project = Project::find($task->project_id);
+            $sprint = ProjectSprint::find($task->sprint_id);
+            return view('task.add-todo-list', ['project' => $project, 'task' => $task, 'sprint' => $sprint]);
+        }
+    }
+
+    public function memberTaskAjax()
+    {
+        $sprintId = request()->get('sprint_id');
+        $tasks = Task::where('sprint_id', $sprintId)->get();
+        // return $tasks;
+        $jsonSource = [];
+        foreach ($tasks as $task) {
+            $jsonSource['data'][] = [
+                $task->id,
+                $task->activity,
+                $task->description,
+                $task->assignedTo && $task->assignedTo->fullname ? $task->assignedTo->fullname : '',
+                $task->deadline_datetime,
+                $task->status
+            ];
+        }
+        $view = View::make('task.member-task', ['tasks' => $tasks]);
+        $contents = (string) $view;
+        // or
+        // $contents = $view->render();
+        // return
+        return response()->json($contents);
     }
 }

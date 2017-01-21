@@ -29,7 +29,7 @@
                         <tr>
                         <td>
                             <a href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> <b>See task in Sprint <?php echo $sprint['sprint'] ?></b> </a>
-                            <a class="btn btn-primary" href='{!! url('/add-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Add task <?php echo $sprint['sprint'] ?> </a> 
+                            <a class="btn btn-primary" href='{!! url('/add-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Add task </a> 
 
                         </td>
                         <td>
