@@ -23,7 +23,7 @@ class TaskController extends BaseController
         view()->share('projectId', $array[4]);
     }
 
-    public function viewTodoList($projectId, $sprintId)
+    public function viewTask($projectId, $sprintId)
     {
         $datas = Task::where(['project_id' => $projectId, 'sprint_id' => $sprintId])->get();
         $sprint = ProjectSprint::find($sprintId);
@@ -32,7 +32,7 @@ class TaskController extends BaseController
         return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprint' => $sprint]);
     }
 
-    public function addTodolist($projectId, $sprintId)
+    public function addTask($projectId, $sprintId)
     {
         $project = Project::with('userProjects', 'sprints')->find($projectId);
         $sprint = ProjectSprint::find($sprintId);
@@ -44,7 +44,7 @@ class TaskController extends BaseController
         }
     }
 
-    public function saveTodolist($projectId, $sprintId)
+    public function saveTask($projectId, $sprintId)
     {
         $project = Project::find($projectId);
         $task = new Task;

@@ -98,12 +98,12 @@
                              <div class="panel-heading">
                             <table border="1">
                                 <tr>
-                                <td class="col-md-4"><a href="{!! url('/view-project/'.$projectId); !!}"><img src="/image/project.png" width="40" height="40">Project Description </a></td>
-                                <td class="col-md-4"><a href="{!! url('/message-board/'.$projectId); !!}"><img src="/image/message-board.png" width="40" height="40">Message Board </td>
-                                <td class="col-md-4"><a href="{!! url('/view-sprint/'.$projectId); !!}"><img src="/image/todo-list.png" width="40" height="40">Todo List </td>
-                                <td class="col-md-4"><a href="{!! url('/view-project-upload/'.$projectId); !!}"><img src="/image/upload.png" width="40" height="40">Project Upload </td>
-                                <td class="col-md-4"><a href="{!! url('/view-project-download/'.$projectId); !!}"><img src="/image/download.png" width="40" height="40">Project Download </td>
-                                <td class="col-md-4"><a href="{!! url('/chatting/'.$projectId); !!}"><img src="/image/chatting.jpg" width="40" height="40">Chatting </td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/view-project/'.$projectId) : ''; !!}"><img src="/image/project.png" width="40" height="40">Project Description </a></td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/message-board/'.$projectId) : ''; !!}"><img src="/image/message-board.png" width="40" height="40">Message Board </td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/view-sprint/'.$projectId) : ''; !!}"><img src="/image/todo-list.png" width="40" height="40">Todo List </td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/view-project-upload/'.$projectId) : ''; !!}"><img src="/image/upload.png" width="40" height="40">Project Upload </td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/view-project-download/'.$projectId) : ''; !!}"><img src="/image/download.png" width="40" height="40">Project Download </td>
+                                <td class="col-md-4"><a href="{!! isset($projectId) ? url('/chatting/'.$projectId) : ''; !!}"><img src="/image/chatting.jpg" width="40" height="40">Chatting </td>
                                 </tr>
                             </table>
                             </div>

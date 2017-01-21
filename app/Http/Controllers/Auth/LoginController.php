@@ -35,6 +35,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+        View::share('hideMenu', true);
     }
     
     public function username()
