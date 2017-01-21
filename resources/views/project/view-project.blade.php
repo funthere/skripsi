@@ -20,7 +20,7 @@
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Project Name</label> 
                             <div class="col-md-7">
-                                <input id="prjname" type="text" class="form-control" name="prjname" value="<?php echo isset($project) ? $project->project_name : '' ?>" required>
+                                <input id="prjname" type="text" class="form-control" name="prjname" value="<?php echo isset($project) ? $project->project_name : '' ?>" required <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                             </div>
                         </div>
                         <br/>
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Project Description</label>
                             <div class="col-md-7">
-                                <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" required><?php echo isset($project) ? $project->description : '' ?></TEXTAREA> 
+                                <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" required <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>><?php echo isset($project) ? $project->description : '' ?></TEXTAREA> 
                             </div>
                         </div>
                         <br/><br/><br/>
@@ -36,18 +36,18 @@
                             <label for="prjDescription" class="col-md-4 control-label">Project Schedule</label>
                             <div class="col-md-8">
                                 <label for="from">From</label>
-                                <input id="dateFrom" type="date" name="dateFrom" class="form-input" value="{{ isset($project) ? $project->start_datetime : '' }}" required>
+                                <input id="dateFrom" type="date" name="dateFrom" class="form-input" value="{{ isset($project) ? $project->start_datetime : '' }}" required <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                                 <label for="to">&nbsp;To</label>
-                                <input id="dateTo" type="date" name="dateTo" value="{{ isset($project) ? $project->finish_datetime : '' }}" required>
+                                <input id="dateTo" type="date" name="dateTo" value="{{ isset($project) ? $project->finish_datetime : '' }}" required <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                             </div>
 
                         </div>
                         <br/><br/>
-                    <div class="form-group">
+                        <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Team Member</label>
                             <div class="col-md-7">
                                 <!-- <input id="teamId" type="text" class="form-control" name="teamName" > -->
-                                <select id="team_member" name="team_member[]" class="form-control" multiple>
+                                <select id="team_member" name="team_member[]" class="form-control" multiple <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                                 <?php 
                                     if (isset($project)) :
                                     foreach($project->userProjects as $key => $userProject):
@@ -60,8 +60,9 @@
                                 ?>
                                 </select>
                             </div>
-                    </div>
-                    <br/><br/>
+                        </div>
+                        <br/><br/>
+                    @if(auth()->user()->role != "member")
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-6">
                                 <button type="submit" class="btn btn-primary">
@@ -74,7 +75,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 {!! Form::close() !!}
 
             </div>

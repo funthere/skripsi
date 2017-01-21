@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use App\User;
+// use App\User;
 use App\UserProject;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
@@ -72,7 +72,7 @@ class ProjectController extends BaseController
         }
         // dd($model->toArray());die();
         if ($isUpdate) {
-            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Data successfully saved!');
+            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Project successfully created!');
         }
         return redirect('list-project')->with('status', 'Data successfully saved!');
     }
@@ -113,7 +113,7 @@ class ProjectController extends BaseController
             $project->message_board = request('prjDescription');
             $project->save();
         }
-        return Redirect::route('project.message-board.create', ['id' => $project->id])->with(['project' => $project]);
+        return Redirect::route('message-board.create', ['id' => $project->id])->with(['project' => $project]);
     }
 
     public function viewMessage()

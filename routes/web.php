@@ -32,13 +32,13 @@ Route::get('/message-board/{id}', ['as' => 'message-board.create', 'uses' => 'Pr
 Route::post('/message-board/{id}', ['as' => 'message-board.save', 'uses' => 'ProjectController@messageBoardSave']);
 
 Route::get('/view-sprint/{project_id}', ['as' => 'sprint.list', 'uses' => 'SprintController@viewSprint']);
-Route::get('/add-sprint/{project_id}', ['as' => 'sprint.add', 'uses' => 'SprintController@createSprint']);
+Route::get('/add-sprint/{project_id}', ['as' => 'sprint.add', 'uses' => 'SprintController@addSprint']);
 Route::get('/delete-sprint/{task_id}', ['as' => 'sprint.delete', 'uses' => 'SprintController@delete']);
 // Route::post('/add-sprint/{project_id}', ['as' => 'sprint.save', 'uses' => 'SprintController@saveSprint']);
 
-Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTodolist']);
-Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTodolist']);
-Route::post('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTodolist']);
+Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTask']);
+Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTask']);
+Route::post('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTask']);
 Route::get('/change-status-task/{task_id}', ['as' => 'task.changestatus', 'uses' => 'TaskController@changeStatus']);
 Route::get('/delete-task/{task_id}', ['as' => 'task.delete', 'uses' => 'TaskController@delete']);
 

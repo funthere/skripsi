@@ -23,26 +23,28 @@ class TaskController extends BaseController
         view()->share('projectId', $array[4]);
     }
 
-    public function viewTodoList($projectId, $sprintId)
+    public function viewTask($projectId, $sprintId)
     {
         $datas = Task::where(['project_id' => $projectId, 'sprint_id' => $sprintId])->get();
+        $sprint = ProjectSprint::find($sprintId);
         $datas = $datas->groupBy('sprint_id');
         // dd($datas);
-        return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprintId' => $sprintId]);
+        return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprint' => $sprint]);
     }
 
-    public function addTodolist($projectId, $sprintId)
+    public function addTask($projectId, $sprintId)
     {
         $project = Project::with('userProjects', 'sprints')->find($projectId);
+        $sprint = ProjectSprint::find($sprintId);
         if (!$project) {
             // not found
         } else {
             $task = new Task;
-            return view('task.add-todo-list', ['project' => $project, 'task' => $task, 'sprintId' => $sprintId]);
+            return view('task.add-todo-list', ['project' => $project, 'task' => $task, 'sprint' => $sprint]);
         }
     }
 
-    public function saveTodolist($projectId, $sprintId)
+    public function saveTask($projectId, $sprintId)
     {
         $project = Project::find($projectId);
         $task = new Task;

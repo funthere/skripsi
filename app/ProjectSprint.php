@@ -15,6 +15,6 @@ class ProjectSprint extends GenericModel
 
     public function tasks()
     {
-    	return $this->hasMany(Task::class);
+    	return $this->hasMany(Task::class, 'sprint_id', 'id');
     }
 }
