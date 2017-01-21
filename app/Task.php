@@ -23,6 +23,6 @@ class Task extends GenericModel
 
     public function sprint()
     {
-    	return $this->belongsTo(ProjectSprint::class, 'project_id', 'id');
+    	return $this->belongsTo(ProjectSprint::class, 'sprint_id', 'id');
     }
 }

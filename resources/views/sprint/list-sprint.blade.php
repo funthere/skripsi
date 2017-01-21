@@ -32,9 +32,14 @@
                             <a class="btn btn-primary" href='{!! url('/add-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Add task <?php echo $sprint['sprint'] ?> </a> 
 
                         </td>
-                        <td><?php echo $sprint['description'] ?></td>
                         <td>
-                            <a class="btn btn-primary" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> Delete </a>
+                            Active: <?php echo $sprint->tasks->where('status', 'active')->count(); ?>
+                            | 
+                            Done: <?php echo $sprint->tasks->where('status', 'done')->count(); ?>
+                            
+                        </td>
+                        <td>
+                            <a title="delete" class="" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> <img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a>
                         </td>
                         </tr>
                     <?php }
