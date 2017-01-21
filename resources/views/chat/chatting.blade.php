@@ -7,8 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 Bateeq
-                </div>
-                </div>
+                </div> 
                 <br/>
                 <center>_______tanggal chat________</center>
                 <br/>

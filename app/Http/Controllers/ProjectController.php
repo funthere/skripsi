@@ -111,41 +111,12 @@ class ProjectController extends BaseController
             $project->message_board = request('prjDescription');
             $project->save();
         }
-        return Redirect::route('message-board.create', ['id' => $project->id])->with(['project' => $project]);
+        return Redirect::route('project.message-board.create', ['id' => $project->id])->with(['project' => $project]);
     }
 
     public function viewMessage()
     {
-        return view('view-message-board');
+        return view('project.view-message-board');
     }
-
-    public function addTodoList()
-    {
-        return view('add-todo-list');
-    }
-    public function viewTodoList()
-    {
-        return view('view-todo-list');
-    }
-
-    public function upload()
-    {
-        return view('upload');
-    }
-
-    public function download()
-    {
-        return view('download');
-    }
-
-    public function chatting($id)
-    {
-        return view('chatting');
-    }
-
-    public function clearing()
-    {
-        View::share('hideMenu', true);
-        return view('clearing-chat');
-    }
+   
 }
