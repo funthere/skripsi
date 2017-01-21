@@ -26,6 +26,8 @@ class ProjectController extends BaseController
     public function index()
     {
         View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
+        View::share('hideHome', true);
+
         return view('project.view-project');
     }
 

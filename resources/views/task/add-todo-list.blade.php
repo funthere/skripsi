@@ -6,6 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                <a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>{{ isset($project) ? $project->project_name : '' }} {{ isset($sprintId) ? ' => Sprint ' . $sprintId : '' }}</center>
                 {{ isset($project) ? $project->project_name : '' }} {{ isset($sprint) ? ' => Sprint ' . $sprint->sprint : '' }}
                 </div>
 
