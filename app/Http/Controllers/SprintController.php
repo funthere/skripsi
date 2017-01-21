@@ -56,13 +56,14 @@ class SprintController extends BaseController
         DB::transaction(function () use ($sprintId) {
             $sprint = ProjectSprint::find($sprintId);
             // First, delete task with this current sprint, then delete this sprint.
+            $taskCount = Task::where('sprint_id', $sprint->id)->count();
             $deleteTask = Task::where('sprint_id', $sprint->id)->delete();
             // echo $deleteTask;
-            if ($deleteTask) {
+            // if ($taskCount) {
                 $deleteSprint = $sprint->delete();
-            }
+            // }
 
-            if ((!$deleteTask)) {
+            if ($taskCount > 0 && (!$deleteTask)) {
                 throw new \Exception('Something went wrong!');
                 // return back()->with('status', 'Something went wrong!');
             }
