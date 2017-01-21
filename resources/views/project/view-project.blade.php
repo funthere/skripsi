@@ -6,7 +6,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                {{ isset($project) ? $project->project_name : '' }}
+                <?php if(!isset($hideHome)) : ?>
+                <a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a>
+            <?php endif; ?>
+                <center>{{ isset($project) ? $project->project_name : '' }}</center>
                 </div>
                 
                 {!! Form::open(['route'=>'project.create']) !!}

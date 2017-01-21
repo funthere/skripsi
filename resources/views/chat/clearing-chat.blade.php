@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                Bateeq
+                <a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>{{ $project->project_name or '' }}</center>
                 </div>
                 <div class="panel-heading">
                 Clearing Chat
