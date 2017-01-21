@@ -57,15 +57,17 @@ class SprintController extends BaseController
             $sprint = ProjectSprint::find($sprintId);
             // First, delete task with this current sprint, then delete this sprint.
             $deleteTask = Task::where('sprint_id', $sprint->id)->delete();
+            // echo $deleteTask;
             if ($deleteTask) {
                 $deleteSprint = $sprint->delete();
             }
 
-            if ((!$deleteTask) || (!$deleteSprint)) {
+            if ((!$deleteTask)) {
                 throw new \Exception('Something went wrong!');
                 // return back()->with('status', 'Something went wrong!');
             }
-            return back()->with('status', 'Sprint deleted!');
         });
+
+        return back()->with('status', 'Sprint deleted!');
     }
 }

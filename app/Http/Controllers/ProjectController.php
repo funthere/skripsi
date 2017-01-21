@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use App\User;
+// use App\User;
 use App\UserProject;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
