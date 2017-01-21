@@ -12,9 +12,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>List Task for Sprint {{ $sprintId }}</center>
+                <div class="panel-heading"><a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>List Task for Sprint {{ $sprint->sprint }}</center>
                 </div>
-                <div class="panel-heading">List Task for Sprint {{ $sprint->sprint }}</div>
                 <span>
                     <a href='{!! url('/add-todo-list', ['projectId' => $projectId, 'sprintId' => $sprint->id]); !!}'>Add New Task</a>
                 </span>
