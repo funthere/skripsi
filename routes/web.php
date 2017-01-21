@@ -44,19 +44,11 @@ Route::get('/delete-task/{task_id}', ['as' => 'task.delete', 'uses' => 'TaskCont
 
 Route::get('/view-todo-list/{id}', 'TaskController@viewTodolist');
 
-Route::get('/upload-project', 'ProjectController@upload');
+Route::get('/view-project-upload/{project_id}', 'ProjectDocumentController@upload');
 
-Route::get('/download-project', 'ProjectController@download');
+Route::get('/view-project-download/{project_id}', 'ProjectDocumentController@download');
 
-Route::get('/chatting/{project_id}', ['as' => 'chatting', 'uses' => 'ProjectController@chatting']);
+Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
 
-Route::get('/clearing-chat', 'ProjectController@clearing');
-
-Route::get('/bootstrap', function () {
-    return view('firstbootstrap');
-});
-
-Route::get('/tags', function () {
-    return view('tags');
-});
+Route::get('/clearing-chat', 'ProjectController@clearing'); 
 Route::get('/users/find', 'UserController@find');
