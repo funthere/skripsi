@@ -43,14 +43,18 @@ Route::get('/edit-todo-list/{task_id}', ['as' => 'task.edit', 'uses' => 'TaskCon
 Route::get('/change-status-task/{task_id}', ['as' => 'task.changestatus', 'uses' => 'TaskController@changeStatus']);
 Route::get('/delete-task/{task_id}', ['as' => 'task.delete', 'uses' => 'TaskController@delete']);
 Route::get('/get-member-task-ajax', ['as' => 'task.member-task', 'uses' => 'TaskController@memberTaskAjax']);
+Route::get('/change-status-ajax', ['as' => 'task.changestatus.ajax', 'uses' => 'TaskController@changeStatusAjax']);
 
 Route::get('/view-todo-list/{id}', 'TaskController@viewTodolist');
 
-Route::get('/view-project-upload/{project_id}', 'ProjectDocumentController@upload');
+Route::get('/view-project-upload/{project_id}', ['as' => 'document.view', 'uses' => 'ProjectDocumentController@upload']);
+Route::post('/view-project-upload/{project_id}', 'ProjectDocumentController@uploadSave');
 
 Route::get('/view-project-download/{project_id}', 'ProjectDocumentController@download');
 
 Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
 
-Route::get('/clearing-chat', 'ProjectController@clearing'); 
+Route::get('/clearing-chat', 'ProjectController@clearing');
 Route::get('/users/find', 'UserController@find');
+
+Route::post('get-file', ['as' => 'download', 'uses' => 'ProjectDocumentController@getFile']);

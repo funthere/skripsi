@@ -56,6 +56,7 @@
                                         <a title="delete" align="right" class="" href='{!! url('/delete-task/'.$task->id); !!}'><img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a>
                                         <a class="btn btn-primary" href='{!! url('/change-status-task/'.$task->id); !!}'> <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>
                                         <a class="btn btn-primary" href='{!! url('/edit-todo-list/'.$task->id); !!}'> Edit </a>
+                                        <a href="javascript:;" data-url="{!! url('/edit-todo-list/'.$task->id); !!}" data-typeid="<?php echo $task['id'] ?>" class="btn btn-primary btn-change-status" > change status </a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -74,16 +75,28 @@
 <script>
     $(document).ready(function() {
         $('#sprint').change(function(){
-            if ($(this).val() != "") {
+            // if ($(this).val() != "") {
                 // alert($(this).val());
                 $.get("{{ url('get-member-task-ajax')}}", { sprint_id: $(this).val() },
                     function(data) {
-
                         $('#content-member').empty();
                         $('#content-member').append(data);
 
                 });
-            }
+            // }
+        });
+    });
+
+
+    $('#content-member').on('click', '.btn-change-status', function(){
+        var url = $(this).data('url'),
+        typeid = $(this).data('typeid');
+
+        $.get("{{ url('change-status-ajax')}}", { task_id: typeid },
+            function(data) {
+                if (data) {
+                    $('#sprint').trigger('change');
+                }
         });
     });
 </script>

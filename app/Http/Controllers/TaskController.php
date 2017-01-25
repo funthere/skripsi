@@ -108,7 +108,7 @@ class TaskController extends BaseController
     public function memberTaskAjax()
     {
         $sprintId = request()->get('sprint_id');
-        $tasks = Task::where('sprint_id', $sprintId)->get();
+        $tasks = Task::where('sprint_id', $sprintId)->where('assigned_to', auth()->user()->id)->get();
         // return $tasks;
         $jsonSource = [];
         foreach ($tasks as $task) {
@@ -122,10 +122,25 @@ class TaskController extends BaseController
             ];
         }
         $view = View::make('task.member-task', ['tasks' => $tasks]);
-        $contents = (string) $view;
+        $contents = (string)$view;
         // or
         // $contents = $view->render();
         // return
         return response()->json($contents);
+    }
+
+    public function changeStatusAjax()
+    {
+        $taskId = request()->get('task_id');
+        $task = Task::find($taskId);
+        if ($task) {
+            if ($task->status == Task::STATUS_ACTIVE) {
+                $task->status = Task::STATUS_DONE;
+            } else {
+                $task->status = Task::STATUS_ACTIVE;
+            }
+        }
+        $result = $task->save();
+        return response()->json($result);
     }
 }
