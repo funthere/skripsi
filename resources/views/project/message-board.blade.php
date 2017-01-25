@@ -18,7 +18,7 @@
                         <label for="message" class="col-md-2 control-label">Message</label>
 
                         <div class="col-md-8">
-                            <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? disabled : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
+                            <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? 'disabled' : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
                         </div>
                     </div>
                     <br/><br/><br/>
