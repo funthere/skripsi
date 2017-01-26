@@ -42,6 +42,10 @@ class ProjectController extends BaseController
             $model = new Project;
         }
         // Validasi tanggal
+        // dd($request->dateFrom < date('Y-m-d'));
+        if ($request->dateFrom < date('Y-m-d')) {
+        	return back()->with('error', "Date From must be greather than yesterday!");
+        }
         if ($request->dateTo > $request->dateFrom) {
         	// dd($request->dateTo);
         } else {
@@ -78,7 +82,7 @@ class ProjectController extends BaseController
         }
         // dd($model->toArray());die();
         if ($isUpdate) {
-            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Project successfully created!');
+            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Project successfully saved!');
         }
         return redirect('list-project')->with('status', 'Data successfully saved!');
     }
