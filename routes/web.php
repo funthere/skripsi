@@ -51,6 +51,7 @@ Route::get('/view-project-upload/{project_id}', ['as' => 'document.view', 'uses'
 Route::post('/view-project-upload/{project_id}', 'ProjectDocumentController@uploadSave');
 
 Route::get('/view-project-download/{project_id}', 'ProjectDocumentController@download');
+Route::delete('/delete-file/{file_id}', ['as' => 'document.delete', 'uses' => 'ProjectDocumentController@deleteFile']);
 
 Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
 
