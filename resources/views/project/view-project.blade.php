@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-warning">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -43,6 +55,7 @@
 
                         </div>
                         <br/><br/>
+
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Team Member</label>
                             <div class="col-md-7">
@@ -61,6 +74,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <br/><br/>
                     @if(auth()->user()->role != "member")
                         <div class="form-group">

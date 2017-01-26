@@ -41,6 +41,12 @@ class ProjectController extends BaseController
         } else {
             $model = new Project;
         }
+        // Validasi tanggal
+        if ($request->dateTo > $request->dateFrom) {
+        	// dd($request->dateTo);
+        } else {
+        	return back()->with('error', "Date To must be greather than date From!");
+        }
         $model->project_name = $request->prjname;
         $model->description = $request->prjDescription;
         $model->start_datetime = $request->dateFrom;
