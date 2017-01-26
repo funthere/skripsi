@@ -67,6 +67,12 @@ class TaskController extends BaseController
     {
         $project = Project::find($projectId);
         $taskId = request()->get('taskId');
+        // Validate
+        // dd(request('deadline') < date('Y-m-d'));
+        if (request('deadline') < date('Y-m-d')) {
+        	return back()->with('error', "Deadline must be greater than yesterday");
+        }
+
         if (!empty($taskId)) {
             $task = Task::find($taskId);
         } else {
