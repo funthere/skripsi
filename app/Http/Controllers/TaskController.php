@@ -39,6 +39,18 @@ class TaskController extends BaseController
         return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'sprint' => $sprint]);
     }
 
+    public function viewTaskMember($projectId)
+    {
+        $datas = Task::where(['project_id' => $projectId])->get();
+        $datas = $datas->groupBy('sprint_id');
+        // dd($datas);
+        if (auth()->user()->role == "member") {
+            $project = Project::with('sprints.tasks')->find($projectId);
+            return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId, 'project' => $project]);
+        }
+        return view('task.list-task', ['datas' => $datas, 'projectId' => $projectId]);
+    }
+
     public function addTask($projectId, $sprintId)
     {
         $project = Project::with('userProjects', 'sprints')->find($projectId);
