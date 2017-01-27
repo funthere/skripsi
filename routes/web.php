@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'ProjectController@listProject');
 
+Route::get('/app', 'ProjectController@app');
+
+Route::get('/main/{project_id}', 'ProjectController@main');
+
 Route::get('/add-project', 'ProjectController@index');
 
 Route::post('create-project', ['as' => 'project.create', 'uses' => 'ProjectController@save']);

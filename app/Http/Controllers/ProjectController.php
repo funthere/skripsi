@@ -31,6 +31,14 @@ class ProjectController extends BaseController
         return view('project.view-project');
     }
 
+
+    public function view2()
+    {
+        return view('project.view-project2');
+    }
+
+
+
     public function save(Request $request)
     {
         // dd($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
@@ -107,6 +115,17 @@ class ProjectController extends BaseController
     {
         return view('project.view-project-team');
     }
+
+    public function app()
+    {
+        return view('layouts.app');
+    }
+
+    public function main()
+    {
+        return view('layouts.main');
+    }
+
 
     public function messageBoard($id)
     {
