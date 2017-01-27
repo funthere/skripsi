@@ -21,7 +21,7 @@
                         <td><?php echo $task->description ? $task->description : ''; ?></td>
                         <td><?php echo $task->assignedTo && $task->assignedTo->fullname ? $task->assignedTo->fullname : ''; ?></td>
                         <td><?php echo $task->deadline_datetime ? date_format(date_create($task->deadline_datetime), 'Y-m-d') : ''; ?></td>
-                        <td><label class="green" style="<?php echo $task->status == "done" ? "color: white; background-color: forestgreen;" : ''; ?>"><?php echo $task->status; ?></label></td>
+                        <td><label class="green" style="<?php echo $task->status == "done" ? "color: white; background-color: forestgreen;" : ''; ?>"><?php echo $task->status == "active" ? "open" : "closed"; ?></label></td>
                         <td>
                             <!-- <a title="delete" align="right" class="" href='{!! url('/delete-task/'.$task->id); !!}'><img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a> -->
                             <a href="javascript:;" data-url="{!! url('/edit-todo-list/'.$task->id); !!}" data-typeid="<?php echo $task['id'] ?>" class="btn btn-primary btn-change-status" > <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>

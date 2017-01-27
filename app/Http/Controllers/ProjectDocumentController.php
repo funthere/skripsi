@@ -33,35 +33,42 @@ class ProjectDocumentController extends BaseController
 
             // Pengecekan apkah ada file dengan nama yang sama
             $same = false;
-            foreach ($files as $key => $file) {
-                $filename = 'file/' . $id . '/' . $filenames[$key] . '.' . $file->getClientOriginalExtension();
-                // dd($filename);
-                if (Storage::exists($filename)) {
-                    $same = true;
-                }
-            }
-            if ($same == true) {
-                return back()->withInput()->with('error', "File name with the same extension can't be uploaded!");
-            }
+            // foreach ($files as $key => $file) {
+            // }
+            // if ($same == true) {
+            //     // return back()->withInput()->with('error', "File name with the same extension can't be uploaded!");
+            // } else {
 
-            foreach ($files as $key => $file) {
-                $filename = $filenames[$key] . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('file/' . $id, $filename); //Will be stored in folder: storage/app/file/{project_id}/filename
-                $document = new ProjectDocument;
-                $document->project_id = $id;
-                $document->user_id = auth()->user()->id;
-                $document->file_name = $filename;
-                $document->file_path = $path;
-                $document->status = "show";
-                $result = $document->save();
-                if ($result) {
-                    $uploadSuccess = true;
+                foreach ($files as $key => $file) {
+                    $filename = 'file/' . $id . '/' . $filenames[$key] . '.' . $file->getClientOriginalExtension();
+                    // dd($filename);
+                    if (Storage::exists($filename)) {
+                        $same = true;
+                    }
+                    if ($same == true) {
+                        $document = ProjectDocument::where('file_path', $filename)->first();
+                    } else {
+                        $document = new ProjectDocument;
+                    }
+                    // dd($filename);
+                    
+                    $filename = $filenames[$key] . '.' . $file->getClientOriginalExtension();
+                    $path = $file->storeAs('file/' . $id, $filename); //Will be stored in folder: storage/app/file/{project_id}/filename
+                    $document->project_id = $id;
+                    $document->user_id = auth()->user()->id;
+                    $document->file_name = $filename;
+                    $document->file_path = $path;
+                    $document->status = "show";
+                    $result = $document->save();
+                    if ($result) {
+                        $uploadSuccess = true;
+                    }
+                    $counter++;
                 }
-                $counter++;
-            }
-            if ($uploadSuccess) {
-                return redirect()->route('document.view', ['project_id' => $project->id])->with('status', 'Data successfully uploaded!');
-            }
+                if ($uploadSuccess) {
+                    return redirect()->route('document.view', ['project_id' => $project->id])->with('status', 'Data successfully uploaded!');
+                }
+            // }
         }
     }
 

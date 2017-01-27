@@ -33,13 +33,13 @@
 
                         </td>
                         <td>
-                            Active: <?php echo $sprint->tasks->where('status', 'active')->count(); ?>
+                            Open: <?php echo $sprint->tasks->where('status', 'active')->count(); ?>
                             | 
-                            Done: <?php echo $sprint->tasks->where('status', 'done')->count(); ?>
+                            Closed: <?php echo $sprint->tasks->where('status', 'done')->count(); ?>
                             
                         </td>
                         <td>
-                            <a title="delete" class="" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> <img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a>
+                            <a title="delete" class="btn btn-primary" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> Delete </a>
                         </td>
                         </tr>
                     <?php }
