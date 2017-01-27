@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-warning">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -50,7 +62,7 @@
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Deadline</label>
                             <div class="col-md-8">
-                                <input id="deadline" type="date" name="deadline" >
+                                <input id="deadline" type="date" name="deadline" required>
         
                             </div>
                         </div>

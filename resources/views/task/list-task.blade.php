@@ -12,11 +12,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>List Task for Sprint {{ $sprint->sprint }}</center>
+                <div class="panel-heading"><a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
                 </div>
+                @if(auth()->user()->role != "member")
                 <span>
                     <a href='{!! url('/add-todo-list', ['projectId' => $projectId, 'sprintId' => $sprint->id]); !!}'>Add New Task</a>
                 </span>
+                @endif
                 @if (auth()->user()->role == "member")
                    <div class="form-group">
                         <label for="email" class="col-md-4 control-label">Select Sprint</label> 
@@ -56,7 +58,6 @@
                                         <a title="delete" align="right" class="" href='{!! url('/delete-task/'.$task->id); !!}'><img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a>
                                         <a class="btn btn-primary" href='{!! url('/change-status-task/'.$task->id); !!}'> <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>
                                         <a class="btn btn-primary" href='{!! url('/edit-todo-list/'.$task->id); !!}'> Edit </a>
-                                        <a href="javascript:;" data-url="{!! url('/edit-todo-list/'.$task->id); !!}" data-typeid="<?php echo $task['id'] ?>" class="btn btn-primary btn-change-status" > change status </a>
                                     </td>
                                 </tr>
                             <?php } ?>

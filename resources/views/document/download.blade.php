@@ -11,26 +11,32 @@
                 <br/>
                 <center>Project Download</center>
                 <br/>
-                <center>
-                    <table border="1">
-                    <tr >
-                        <td class="col-md-5"> File Name </td>
-                        <td class="col-md-3"> Action </td>
-                    </tr>
+                    <table class="table" border="1">
                     <tr>
-                        <td class="col-md-5"> Business requirement Document </td>
-                        <td class="col-md-3"> <a href="{{ url($file) }}">Download </a></td>
+                        <th>File Name</th>
+                        <th>Uploaded By</th>
+                        <th>Uploaded At</th>
+                        <th>Action</th>
                     </tr>
-                    <tr>
-                        <td class="col-md-5"> Timeline Bateeq</td>
-                        <td class="col-md-3"> <a>Download </a></td>
-                    </tr>
+                     @if (count($project->documents) <= 0)
                      <tr>
-                        <td class="col-md-5"> User Story Bateeq </td>
-                        <td class="col-md-3"> <a>Download </a></td>
-                    </tr>
-                </table>
-                </center>
+                         <td colspan="4"></td>
+                     </tr>
+                    @else
+                        @foreach($project->documents as $file)
+                            <tr>
+                                <td>{!! $file->file_name !!}</td>
+                                <td>{!! $file->owner->fullname !!}</td>
+                                <td>{!! $file->created_at !!}</td>
+                                <td>
+                                    {!! Form::open(['route' => ['download'], 'method' => 'post']) !!}
+                                    <input type="hidden" name="file_path" value="{{ $file->file_path }}">
+                                    <button type="submit" class="btn btn--blue" value="Download">Download</button> {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </table>
                 <br/><br/><br/> 
                 </div>
             </div>

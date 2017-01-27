@@ -22,50 +22,94 @@ class ProjectDocumentController extends BaseController
     }
     public function uploadSave($id, Request $request)
     {
+        // dd($request->all());
         $project = Project::find($id);
         if ($project) {
             $files = $request->file('file');
             $filenames = $request->filename;
             // dd($files);
             $counter = 0;
-            foreach ($files as $file) {
-                $filename = $filenames[$counter] . '.' . $file->getClientOriginalExtension();
+            $uploadSuccess = false;
+
+            // Pengecekan apkah ada file dengan nama yang sama
+            $same = false;
+            foreach ($files as $key => $file) {
+                $filename = 'file/' . $id . '/' . $filenames[$key] . '.' . $file->getClientOriginalExtension();
+                // dd($filename);
+                if (Storage::exists($filename)) {
+                    $same = true;
+                }
+            }
+            if ($same == true) {
+                return back()->withInput()->with('error', "File name with the same extension can't be uploaded!");
+            }
+
+            foreach ($files as $key => $file) {
+                $filename = $filenames[$key] . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('file/' . $id, $filename); //Will be stored in folder: storage/app/file/{project_id}/filename
                 $document = new ProjectDocument;
                 $document->project_id = $id;
                 $document->user_id = auth()->user()->id;
                 $document->file_name = $filename;
-                $document->file_path = 'app/' . $path;
+                $document->file_path = $path;
                 $document->status = "show";
                 $result = $document->save();
                 if ($result) {
-                    return redirect()->route('document.view', ['project_id' => $project->id])->with('status', 'Data successfully uploaded!');
+                    $uploadSuccess = true;
                 }
+                $counter++;
+            }
+            if ($uploadSuccess) {
+                return redirect()->route('document.view', ['project_id' => $project->id])->with('status', 'Data successfully uploaded!');
             }
         }
     }
 
     public function download($id)
     {
-         $project = Project::with('userProjects.user')->find($id);
+        $project = Project::with('documents.owner')->find($id);
+        // dd($project->documents);
         if ($project) {
-        
-             $fileName = "/download/doc.doc";
-            $file= public_path(). $fileName;
-            return view('document.download',['file' => $fileName, 'project' => $project]);
-         }
+            return view('document.download', ['project' => $project]);
+        }
     }
 
     public function getFile(Request $request)
     {
         // dd($request->get('file_path'));
         $path = $request->get('file_path');
+        $folder = 'app/';
         if ($path) {
-            $content = storage_path($path);
-            if (!file_exists($content)) {
+            $content = storage_path($folder . $path);
+            // dd(($content));
+            if (!Storage::exists($path)) {
                 return back()->with('error', 'File does not exist!');
             }
             return response()->download($content);
+        }
+        return back()->with('error', 'File does not exist!');
+    }
+
+    public function deleteFile($id)
+    {
+        // dd(Storage::exists('file/1/ok1.doc'));
+        $document = ProjectDocument::find($id);
+        if ($document) {
+            $filePath = $document->file_path;
+            $deleted = $document->delete();
+            if ($deleted) {
+                $fileExist = Storage::exists($document->file_path);
+                if ($fileExist) { //Jika file ada, maka delete file
+                    Storage::delete($filePath);
+                }
+
+                return back()->with('status', 'Delete data success!');
+
+            } else {
+                return back()->with('error', 'Something wrong when delete data!');
+            }
+        } else {
+            return back()->with('error', 'Data not found!');
         }
     }
 }

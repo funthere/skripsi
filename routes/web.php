@@ -36,6 +36,7 @@ Route::get('/add-sprint/{project_id}', ['as' => 'sprint.add', 'uses' => 'SprintC
 Route::get('/delete-sprint/{task_id}', ['as' => 'sprint.delete', 'uses' => 'SprintController@delete']);
 // Route::post('/add-sprint/{project_id}', ['as' => 'sprint.save', 'uses' => 'SprintController@saveSprint']);
 
+Route::get('/view-todo-list/{project_id}', ['as' => 'task.list.member', 'uses' => 'TaskController@viewTaskMember']);
 Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'uses' => 'TaskController@viewTask']);
 Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTask']);
 Route::post('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTask']);
@@ -51,6 +52,7 @@ Route::get('/view-project-upload/{project_id}', ['as' => 'document.view', 'uses'
 Route::post('/view-project-upload/{project_id}', 'ProjectDocumentController@uploadSave');
 
 Route::get('/view-project-download/{project_id}', 'ProjectDocumentController@download');
+Route::delete('/delete-file/{file_id}', ['as' => 'document.delete', 'uses' => 'ProjectDocumentController@deleteFile']);
 
 Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
 

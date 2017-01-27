@@ -27,8 +27,8 @@ class SprintController extends BaseController
     public function viewSprint($projectId)
     {
         $project = Project::with('tasks')->find($projectId);
-        // dd($project->tasks);
-        foreach ($project->tasks as $task) {
+        if (auth()->user()->role == "member") {
+        	return redirect()->route('task.list.member', ['project_id' => $project->id]);
         }
         if ($project) {
             // dd($project->sprints);
