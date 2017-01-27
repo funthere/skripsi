@@ -87,7 +87,7 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-4">
+                                <div align="center">
                                     <i class="fa fa-file-text-o fa-5x"></i>
                                 </div>
                                 
@@ -105,7 +105,7 @@
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div align="center">
                                     <i class="fa fa-calendar-o fa-5x"></i>
                                 </div> 
                             </div>
@@ -124,7 +124,7 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div align="center">
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div align="center">
                                     <i class="fa fa-upload fa-5x"></i>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div align="center">
                                     <i class="fa fa-download fa-5x"></i>
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div align="center">
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                             </div>
