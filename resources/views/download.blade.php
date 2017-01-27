@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-5"> Business requirement Document </td>
-                        <td class="col-md-3"> <a>Download </a></td>
+                        <td class="col-md-3"> <a href="{{ url($file) }}">Download </a></td>
                     </tr>
                     <tr>
                         <td class="col-md-5"> Timeline Bateeq</td>
@@ -31,7 +31,7 @@
                     </tr>
                 </table>
                 </center>
-                <br/><br/><br/>
+                <br/><br/><br/> 
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use App\User;
+// use App\User;
 use App\UserProject;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
@@ -26,16 +26,38 @@ class ProjectController extends BaseController
     public function index()
     {
         View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
-        return view('view-project');
+        View::share('hideHome', true);
+
+        return view('project.view-project');
     }
+
+
+    public function view2()
+    {
+        return view('project.view-project2');
+    }
+
+
 
     public function save(Request $request)
     {
         // dd($request->all());die(); // Untuk melihat semua parameter yang dilempar dari view
+        $isUpdate = false;
         if (!empty($request->id)) {
             $model = Project::with('userProjects')->find($request->id);
+            $isUpdate = true;
         } else {
             $model = new Project;
+        }
+        // Validasi tanggal
+        // dd($request->dateFrom < date('Y-m-d'));
+        if ($request->dateFrom < date('Y-m-d')) {
+        	return back()->with('error', "Date From must be greather than yesterday!");
+        }
+        if ($request->dateTo > $request->dateFrom) {
+        	// dd($request->dateTo);
+        } else {
+        	return back()->with('error', "Date To must be greather than date From!");
         }
         $model->project_name = $request->prjname;
         $model->description = $request->prjDescription;
@@ -67,6 +89,9 @@ class ProjectController extends BaseController
             }
         }
         // dd($model->toArray());die();
+        if ($isUpdate) {
+            return redirect()->route('project.view', ['id' => $model->id])->with('status', 'Project successfully saved!');
+        }
         return redirect('list-project')->with('status', 'Data successfully saved!');
     }
 
@@ -75,31 +100,42 @@ class ProjectController extends BaseController
         View::share('hideMenu', true);
         $datas = Project::with('user')->get();
         
-        return View('list-project', ['datas' => $datas]);
+        return View('project.list-project', ['datas' => $datas]);
     }
 
     public function view($id)
     {
         $project = Project::with('userProjects.user')->find($id);
         if ($project) {
-            return view('view-project', ['project' => $project]);
+            return view('project.view-project', ['project' => $project]);
         }
     }
 
     public function viewTeam()
     {
-        return view('view-project-team');
+        return view('project.view-project-team');
     }
 
-    public function message($id)
+    public function app()
+    {
+        return view('layouts.app');
+    }
+
+    public function main()
+    {
+        return view('layouts.main');
+    }
+
+
+    public function messageBoard($id)
     {
         $project = Project::find($id);
         if ($project) {
-            return view('message-board')->with(['project' => $project]);
+            return view('project.message-board')->with(['project' => $project]);
         }
     }
 
-    public function messageSave($id)
+    public function messageBoardSave($id)
     {
         $project = Project::find($id);
         if ($project) {
@@ -111,36 +147,7 @@ class ProjectController extends BaseController
 
     public function viewMessage()
     {
-        return view('view-message-board');
+        return view('project.view-message-board');
     }
-
-    public function addTodoList()
-    {
-        return view('add-todo-list');
-    }
-    public function viewTodoList()
-    {
-        return view('view-todo-list');
-    }
-
-    public function upload()
-    {
-        return view('upload');
-    }
-
-    public function download()
-    {
-        return view('download');
-    }
-
-    public function chatting()
-    {
-        return view('chatting');
-    }
-
-    public function clearing()
-    {
-        View::share('hideMenu', true);
-        return view('clearing-chat');
-    }
+   
 }

@@ -4,6 +4,9 @@ namespace App;
 
 class Task extends GenericModel
 {
+    const STATUS_ACTIVE = "active";
+    const STATUS_DONE = "done";
+
     protected $fillable = [
         'assigned_to', 'project_id', 'sprint_id', 'activity', 'description', 'status', 'deadline_datetime', 'submit_datetime'
     ];
@@ -20,6 +23,6 @@ class Task extends GenericModel
 
     public function sprint()
     {
-    	return $this->belongsTo(ProjectSprint::class, 'project_id', 'id');
+    	return $this->belongsTo(ProjectSprint::class, 'sprint_id', 'id');
     }
 }
