@@ -48,13 +48,9 @@
                 {!! Form::model($project, ['files'=> true, 'id'=>'form_documents']) !!}
                     <div id="form-file">
                         <div class="form-group">
-                            <label for="file" class="col-md-1 control-label">File Name </label>
-                            <div class="col-md-3">
-                                <div class="input-group date">
-                                    <input id="filename[0]" type="text" class="form-control" name="filename[0]" required>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
+                            <label class="col-md-2" ></label> <label for="file" class="col-md-2 control-label">File Name </label>
+                                
+                            <div class="col-md-4">
                                 <div class="input-group date">
                                     <input type="file" name="file[0]" required>
                                 </div>
@@ -62,7 +58,7 @@
                             <div class="col-md-2">
                                 <button class="btn btn--blue btn-add-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-plus"></i>  </button>
                             </div>
-                        <br/><br/><br/>
+                        <br/>
                         </div>
                     </div>
                         <div class="form-group">
@@ -70,7 +66,7 @@
                                 <!-- <button type="cancel" class="btn ">
                                     Cancel
                                 </button> -->
-                        <input class="btn btn-primary" type="submit" onClick="if ($('#inputPassword').val() != $('#inputPasswordConfirm').val()) { alert('Your password and password confirmation not the same!'); return false;  } else { return true; }" value="Upload"/>
+                        &nbsp&nbsp&nbsp&nbsp</span><span class="col-md-8"></span><input class="btn btn-primary" type="submit" onClick="if ($('#inputPassword').val() != $('#inputPasswordConfirm').val()) { alert('Your password and password confirmation not the same!'); return false;  } else { return true; }" value="Upload"/>
                             </div>
                         </div>
                     <br/><br/><br/>
@@ -90,20 +86,16 @@ $(document).ready(function() {
     $('.btn-add-file').on('click', function() {
         $('#form-file').append(
             '<div class="form-group">' +
-                '<label for="file" class="col-md-1 control-label">File Name </label>' +
-                '<div class="col-md-3">' +
-                    '<div class="input-group date">' +
-                        '<input id="filename[]" type="text" class="form-control" name="filename[' + index + ']" required>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="col-md-5">' +
+                '<label class="col-md-2" ></label><label for="file" class="col-md-2 control-label">File Name </label>' +
+                
+                '<div class="col-md-4">' +
                     '<div class="input-group date">' +
                         '<input type="file" name="file[' + index + ']" required>' +
                     '</div>' +
                 '</div>' +
                 '<div class="col-md-2">' +
                     '<button class="btn btn-danger btn-delete-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-minus"></i>  </button>' +
-                '</div><br/><br/><br/>' +
+                '</div><br/>' +
             '</div>'
         );
         index++;

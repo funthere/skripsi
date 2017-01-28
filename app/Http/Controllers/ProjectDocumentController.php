@@ -40,7 +40,7 @@ class ProjectDocumentController extends BaseController
             // } else {
 
                 foreach ($files as $key => $file) {
-                    $filename = 'file/' . $id . '/' . $filenames[$key] . '.' . $file->getClientOriginalExtension();
+                    $filename = 'file/' . $id . '/' . $file->getClientOriginalName();
                     // dd($filename);
                     // $document = new ProjectDocument;
                     // dd(Storage::exists($filename));
@@ -55,7 +55,7 @@ class ProjectDocumentController extends BaseController
                     }
                     
                     
-                    $filename = $filenames[$key] . '.' . $file->getClientOriginalExtension();
+                    $filename = $file->getClientOriginalName();
                      //Will be stored in folder: storage/app/file/{project_id}/filename
                     $path = $file->storeAs('file/' . $id, $filename);
                     $document->project_id = $project->id;
