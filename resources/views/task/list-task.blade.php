@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
+                <div class="panel-heading"><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
                 </div>
                 @if(auth()->user()->role != "member")
                 <span>
