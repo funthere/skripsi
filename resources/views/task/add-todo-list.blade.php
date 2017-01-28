@@ -1,32 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading">
                 <center>{{ isset($project) ? $project->project_name : '' }} {{ isset($sprintId) ? ' => Sprint ' . $sprint->id : '' }}</center>
                 </div>
-
                 {!! Form::open(['route' => ['task.create', $project->id, $sprint->id]]) !!}
                     @if(isset($task))
                         <input type="hidden" name="taskId" value="{!! $task->id !!}">
-                    @endif
-                    <div class="panel-body">
-                    <center>Todo List </center>
-                      <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Sprint {{ $sprint->sprint }}</label> 
-                            <div class="col-md-7"> 
-                            </div>
-                        </div>
-                        <br/>
-                       <table border="1" width="100%">
-                       <tr>
-                       <td>
-                       <br/><br/>
-                       <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Task</label> 
+                    @endif 
+                       <br/><br/> 
+                            <label for="email" class="col-md-4 control-label">Task Name</label> 
                             <div class="col-md-4">
                                 <input id="task_name" type="text" class="form-control" name="task_name" value="{{ isset($task) ? $task->activity : '' }}" placeholder="Task Name" required="required">
                             </div>
@@ -37,8 +22,7 @@
                                             <option value="{{$userProject->user_id}}" {{(($userProject->user_id == $task->assigned_to) ? 'selected' : "")}}>{{$userProject->user->fullname}}</option>
                                         @endforeach
                                 </select>
-                            </div>
-                        </div>
+                            </div> 
                         <br/><br/>
 
                         <div class="form-group">
@@ -67,10 +51,7 @@
                                 </a>
                             </div>
                         </div>
-                        <br/><br/>
-                        </td>
-                        </tr>
-                        </table>
+                        <br/><br/> 
                     </div>
                 {!! Form::close() !!}
             </div>
