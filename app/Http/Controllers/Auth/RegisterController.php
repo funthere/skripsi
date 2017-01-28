@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Request;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -51,8 +52,12 @@ class RegisterController extends Controller
             'username' => 'required|max:255',
             'fullname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
         ]);
+    }
+
+    public function create()
+    {
+        return view('auth.register');
     }
 
     /**
@@ -61,13 +66,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function createUser(Request $request)
     {
-        return User::create([
-            'username' => $data['username'],
-            'fullname' => $data['fullname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        // dd(request()->all());
+        $result = User::create([
+            'username' => request('username'),
+            'fullname' => request('fullname'),
+            'email' => request('email'),
+            'password' => bcrypt('Standar123'),
         ]);
+        if ($result) {
+            return redirect('list-user')->with('status', 'User successfully created!');
+        }
     }
 }

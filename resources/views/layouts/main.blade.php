@@ -84,7 +84,7 @@
 
         @else
             <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-green">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                  <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-yellow">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -121,7 +121,7 @@
                 </div>
                
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-green">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-yellow">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-red">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -177,7 +177,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-brown">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">

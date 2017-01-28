@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Register a User</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register-user') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
@@ -52,25 +59,24 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                            <label for="role" class="col-md-4 control-label">Role</label>
+                            <?php
+                                $roles = ['member' => 'Member', 'management' => 'Menagement'];
+                            ?>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <select name="role" class="form-input" id="role" required>
+                                    <option value="">--- select role --</option>
+                                        @foreach($roles as $key => $role)
+                                            <option value="{{$key}}" >{{$role}}</option>
+                                        @endforeach
+                                </select>
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('role'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('role') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 

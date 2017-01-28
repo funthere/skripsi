@@ -56,8 +56,10 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
+                            @if (Auth::user()->role == "administrator")
+                                <li><a href="{{ url('/list-user') }}">List User</a></li>
+                            @endif
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <img src="/image/people.png" width="30" height="30">{{ Auth::user()->fullname }} <span class="caret"></span>
@@ -75,6 +77,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/change-password') }}" >
+                                            Change Password
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -86,7 +93,7 @@
     <!-- <script src="/js/bootstrap.min.js"></script> -->
     <script src="/js/select2.min.js"></script>
         
-        @if (isset($hideMenu) || Request::is('login'))
+        @if (isset($hideMenu) || Request::is('login') || Request::is('register') || Request::is('change-password') )
 
         @else
 

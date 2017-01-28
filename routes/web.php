@@ -14,8 +14,14 @@
 Route::get('/', function () {
     return redirect('/home');
 });
+Route::get('/register', 'Auth\RegisterController@create');
+Route::post('/register-user', 'Auth\RegisterController@createUser');
+Route::get('/change-password', 'UserController@changePassword');
+Route::post('/save-password', 'UserController@savePassword');
+Route::get('/list-user', 'UserController@listUser');
 
 Auth::routes();
+
 
 Route::get('/home', 'ProjectController@listProject');
 
