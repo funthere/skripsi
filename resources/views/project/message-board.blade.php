@@ -5,8 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                <a href="{!! url('/home'); !!}"><img src="/image/home.png" width="30" height="30"></a><center>{{ $project->project_name or '' }}</center>
+                <div class="panel-heading"><center>{{ $project->project_name or '' }}</center>
                 </div>
 
                 {!! Form::open(['route' => ['message-board.save', $project->id]]) !!}
