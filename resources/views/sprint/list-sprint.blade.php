@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -7,30 +7,25 @@
         {{ session('status') }}
     </div>
 @endif
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                <center>{{ isset($project) ? $project->project_name : '' }}</center>
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading"><center>{{ isset($project) ? $project->project_name : '' }}</center>
                 </div>
-                <span>
+                <br/><span>&nbsp;&nbsp;&nbsp;
                     <a href='{!! url('/add-sprint/'.$project['id']); !!}'>Add New Sprint</a>
-                </span>
-                <table border="2" class="table">
+                </span><br/><br/>
+                 <div class="panel-body">
+                <table border="2" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
                 <tr>
-                    <th>Sprint</th>
-                    <th>Summary</th>
+                    <th>Sprint Name</th>
+                    <th>Task Summary</th>
                     <th>Action</th>
                 </tr>
                     <?php
                     foreach ($project->sprints as $sprint) { ?>
                         <tr>
                         <td>
-                            <a href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> <b>See task in Sprint <?php echo $sprint['sprint'] ?></b> </a>
-                            <a class="btn btn-primary" href='{!! url('/add-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Add task </a> 
-
+                            <a href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Sprint <?php echo $sprint["id"]?> </a> 
                         </td>
                         <td>
                             Open: <?php echo $sprint->tasks->where('status', 'active')->count(); ?>
@@ -39,12 +34,13 @@
                             
                         </td>
                         <td>
-                            <a title="delete" class="btn btn-primary" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> Delete </a>
+                            <a title="delete" class="btn btn-danger" href='{!! url('/delete-sprint/'.$sprint->id); !!}'> Delete </a>
                         </td>
                         </tr>
                     <?php }
                     ?>
                 </table>
+                </div>
             </div>
         </div>
     </div>

@@ -4,15 +4,16 @@
         {{ session('status') }}
     </div>
 @endif
-<table class="table">
-    <tr>
-        <th>Task Name</th>
-        <th>Description</th>
-        <th>Assigned To</th>
-        <th>Deadline</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
+<div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Assigned To</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Action</th>
+                </tr>
         <?php
             if (count($tasks) > 0) {
                 foreach ($tasks as $task) { ?>
@@ -24,15 +25,16 @@
                         <td><label class="green" style="<?php echo $task->status == "done" ? "color: white; background-color: forestgreen;" : ''; ?>"><?php echo $task->status == "active" ? "open" : "closed"; ?></label></td>
                         <td>
                             <!-- <a title="delete" align="right" class="" href='{!! url('/delete-task/'.$task->id); !!}'><img src="{{ url('/image/icon-delete.jpg') }}" height="30px" width="30px"> </a> -->
-                            <a href="javascript:;" data-url="{!! url('/edit-todo-list/'.$task->id); !!}" data-typeid="<?php echo $task['id'] ?>" class="btn btn-primary btn-change-status" > <?php echo $task->status == "active" ? "Done" : "Undone" ?> </a>
+                            <a href="javascript:;" data-url="{!! url('/edit-todo-list/'.$task->id); !!}" data-typeid="<?php echo $task['id'] ?>" class="btn btn-primary btn-change-status" > <?php echo $task->status == "active" ? "Closed" : "Open" ?> </a>
                         </td>
                     </tr>
                 <?php } ?>
             <?php } else { ?>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         <center>(no data)</center>
                     </td>
                 </tr>
             <?php } ?>
 </table>
+</div>

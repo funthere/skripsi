@@ -8,19 +8,20 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading"><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
                 </div>
                 @if(auth()->user()->role != "member")
+                <br/>
                 <span>
-                    <a href='{!! url('/add-todo-list', ['projectId' => $projectId, 'sprintId' => $sprint->id]); !!}'>Add New Task</a>
+                    &nbsp;&nbsp;&nbsp;<a href='{!! url('/view-sprint', ['projectId' => $projectId]); !!}'>Back To Sprint</a>
+                    &nbsp;&nbsp;&nbsp;<a class= "btn btn-primary" href='{!! url('/add-todo-list', ['projectId' => $projectId, 'sprintId' => $sprint->id]); !!}'>Add New Task</a>
                 </span>
                 @endif
                 @if (auth()->user()->role == "member")
                    <div class="form-group">
+                   <br/><br/> &nbsp;&nbsp;&nbsp;
                         <label for="email" class="col-md-4 control-label">Select Sprint</label> 
                          <div class="col-md-4">
                             <select name="sprint" class="form-input" id="sprint" required>
@@ -35,11 +36,12 @@
                         
                     </div>
                 @else
-                <table class="table">
+                <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
                 <tr>
-                    <th>Nama task</th>
-                    <th>Deskripsi</th>
-                    <th>Ditugaskan kepada</th>
+                    <th>Task Name</th>
+                    <th>Description</th>
+                    <th>Assigned To</th>
                     <th>Deadline</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -55,8 +57,9 @@
                                     <td><?php echo $task->deadline_datetime ? $task->deadline_datetime : ''; ?></td>
                                     <td><label class="green" style="<?php echo $task->status == "done" ? "color: white; background-color: forestgreen;" : ''; ?>"><?php echo $task->status == "active" ? "open" : "closed"; ?></label></td>
                                     <td>
-                                        <a class="btn btn-primary" href='{!! url('/delete-task/'.$task->id); !!}'> Delete </a>
                                         <a class="btn btn-primary" href='{!! url('/edit-todo-list/'.$task->id); !!}'> Edit </a>
+                                        <a class="btn btn-danger" href='{!! url('/delete-task/'.$task->id); !!}'> Delete </a>
+                                        
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -64,6 +67,7 @@
 
                     <?php } ?>
                 </table>
+                </div>
                 @endif
             </div>
         </div>
