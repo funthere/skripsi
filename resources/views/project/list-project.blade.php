@@ -7,37 +7,47 @@
         {{ session('status') }}
     </div>
 @endif
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">List Project</div>
-                <span>
-                    <a href='{!! url('/add-project'); !!}'>Add New Project</a>
-                </span>
-                <table border="2" class="table">
-                <tr>
-                    <th>Nama proyek</th>
-                    <th>Deskripsi</th>
-                    <th>Mulai</th>
-                    <th>Selesai</th>
-                    <th>PIC</th>
-                </tr>
-                    <?php
-                    foreach ($datas as $data) { ?>
-                        <tr>
-                        <td><a href='{!! url('/view-project/'.$data['id']); !!}'> <?php echo $data['project_name'] ?> </a></td>
-                        <td><?php echo $data['description'] ?></td>
-                        <td><?php echo $data->start_datetime ?></td>
-                        <td><?php echo $data->finish_datetime ?></td>
-                        <td><?php echo $data->user->fullname ?></td>
-                        </tr>
-                    <?php }
-                    ?>
-                </table>
+@if(auth()->user()->role != "member")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href='{!! url('/add-project'); !!}'>Add New Project</a>
+@endif
+<h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-fighter-jet" aria-hidden="true"></i> Ongoing Proyek</h3>
+    <?php
+    foreach ($datas as $data) { ?>
+    <div class="col-lg-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><center><?php echo $data['project_name'] ?></center>
             </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <?php echo $data['description'] ?><br/>
+                <b>Start:<?php echo $data->start_datetime ?>
+                End: <?php echo $data->finish_datetime ?></b><br/>
+                <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a>
+            </div>
+            <!-- /.panel-body -->
         </div>
+        <!-- /.panel -->
     </div>
-</div>
+    <?php }
+    ?>
+<h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-check-square-o" aria-hidden="true"></i> Completed Proyek</h3>
+    <?php
+    foreach ($datas as $data) { ?>
+    <div class="col-lg-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><center><?php echo $data['project_name'] ?></center>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <?php echo $data['description'] ?><br/>
+                <b>Start:<?php echo $data->start_datetime ?>
+                End: <?php echo $data->finish_datetime ?></b><br/>
+                <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <?php }
+    ?>
 @endsection
