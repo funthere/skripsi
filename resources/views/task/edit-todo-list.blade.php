@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label for="prjDescription" class="col-md-4 control-label">Deadline</label>
                             <div class="col-md-8">
-                                <input id="deadline" type="date" name="deadline" required>
+                                <input id="deadline" type="date" name="deadline" value="{{$task->deadline_datetime}}" required>
         
                             </div>
                         </div>

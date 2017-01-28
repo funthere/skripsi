@@ -22,7 +22,7 @@
                 </div>
                 <br/>
                 <center>Project Upload</center>
-                @if (count($project->documents) > 0)
+                <!-- @if (count($project->documents) > 0)
                     <table class="table" border="1">
                     <tr>
                         <th>File Name</th>
@@ -45,7 +45,7 @@
                         </tr>
                     @endforeach
                     </table>
-                @endif
+                @endif -->
                 <br/>
                 {!! Form::model($project, ['files'=> true, 'id'=>'form_documents']) !!}
                     <div id="form-file">
@@ -62,16 +62,16 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn--blue btn-add-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-plus"></i> + </button>
+                                <button class="btn btn--blue btn-add-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-plus"></i>  </button>
                             </div>
                         <br/><br/><br/>
                         </div>
                     </div>
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-2">
-                                <button type="cancel" class="btn ">
+                                <!-- <button type="cancel" class="btn ">
                                     Cancel
-                                </button>
+                                </button> -->
                         <input class="btn btn-primary" type="submit" onClick="if ($('#inputPassword').val() != $('#inputPasswordConfirm').val()) { alert('Your password and password confirmation not the same!'); return false;  } else { return true; }" value="Upload"/>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ $(document).ready(function() {
                     '</div>' +
                 '</div>' +
                 '<div class="col-md-2">' +
-                    '<button class="btn btn-danger btn-delete-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-minus"></i> - </button>' +
+                    '<button class="btn btn-danger btn-delete-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-minus"></i>  </button>' +
                 '</div><br/><br/><br/>' +
             '</div>'
         );

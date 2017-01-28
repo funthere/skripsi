@@ -89,19 +89,19 @@ class TaskController extends BaseController
         return redirect()->route('task.list', ['project_id' => $project->id, 'sprint_id' => $sprintId])->with('status', 'Data successfully saved!');
     }
 
-    public function changeStatus($taskId)
-    {
-        $task = Task::find($taskId);
-        if ($task) {
-            if ($task->status == Task::STATUS_ACTIVE) {
-                $task->status = Task::STATUS_DONE;
-            } else {
-                $task->status = Task::STATUS_ACTIVE;
-            }
-        }
-        $result = $task->save();
-        return back()->with('status', 'Data successfully saved!');
-    }
+    // public function changeStatus($taskId)
+    // {
+    //     $task = Task::find($taskId);
+    //     if ($task) {
+    //         if ($task->status == Task::STATUS_ACTIVE) {
+    //             $task->status = Task::STATUS_DONE;
+    //         } else {
+    //             $task->status = Task::STATUS_ACTIVE;
+    //         }
+    //     }
+    //     $result = $task->save();
+    //     return back()->with('status', 'Data successfully saved!');
+    // }
 
     public function delete($taskId)
     {
@@ -147,7 +147,7 @@ class TaskController extends BaseController
         return response()->json($contents);
     }
 
-    public function changeStatusAjax()
+    public function changeStatus()
     {
         $taskId = request()->get('task_id');
         $task = Task::find($taskId);

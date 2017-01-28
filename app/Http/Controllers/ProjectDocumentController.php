@@ -42,19 +42,23 @@ class ProjectDocumentController extends BaseController
                 foreach ($files as $key => $file) {
                     $filename = 'file/' . $id . '/' . $filenames[$key] . '.' . $file->getClientOriginalExtension();
                     // dd($filename);
-                    if (Storage::exists($filename)) {
-                        $same = true;
-                    }
-                    if ($same == true) {
+                    // $document = new ProjectDocument;
+                    // dd(Storage::exists($filename));
+                    // if (Storage::exists($filename)) {
+                    //     $same = true;
+                    // }
+                    // if ($same == true) {
                         $document = ProjectDocument::where('file_path', $filename)->first();
-                    } else {
+                    // }
+                    if (!$document) {
                         $document = new ProjectDocument;
                     }
-                    // dd($filename);
+                    
                     
                     $filename = $filenames[$key] . '.' . $file->getClientOriginalExtension();
-                    $path = $file->storeAs('file/' . $id, $filename); //Will be stored in folder: storage/app/file/{project_id}/filename
-                    $document->project_id = $id;
+                     //Will be stored in folder: storage/app/file/{project_id}/filename
+                    $path = $file->storeAs('file/' . $id, $filename);
+                    $document->project_id = $project->id;
                     $document->user_id = auth()->user()->id;
                     $document->file_name = $filename;
                     $document->file_path = $path;

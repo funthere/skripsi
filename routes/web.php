@@ -51,10 +51,10 @@ Route::get('/view-todo-list/{project_id}/{sprint_id}', ['as' => 'task.list', 'us
 Route::get('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.create', 'uses' => 'TaskController@addTask']);
 Route::post('/add-todo-list/{project_id}/{sprint_id}', ['as' => 'task.save', 'uses' => 'TaskController@saveTask']);
 Route::get('/edit-todo-list/{task_id}', ['as' => 'task.edit', 'uses' => 'TaskController@editTask']);
-Route::get('/change-status-task/{task_id}', ['as' => 'task.changestatus', 'uses' => 'TaskController@changeStatus']);
+// Route::get('/change-status-task/{task_id}', ['as' => 'task.changestatus', 'uses' => 'TaskController@changeStatus']);
 Route::get('/delete-task/{task_id}', ['as' => 'task.delete', 'uses' => 'TaskController@delete']);
 Route::get('/get-member-task-ajax', ['as' => 'task.member-task', 'uses' => 'TaskController@memberTaskAjax']);
-Route::get('/change-status-ajax', ['as' => 'task.changestatus.ajax', 'uses' => 'TaskController@changeStatusAjax']);
+Route::get('/change-status-ajax', ['as' => 'task.changestatus.ajax', 'uses' => 'TaskController@changeStatus']);
 
 Route::get('/view-todo-list/{id}', 'TaskController@viewTodolist');
 

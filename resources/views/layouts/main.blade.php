@@ -46,28 +46,33 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                @else
+                    @if (Auth::user()->role == "administrator")
+                        <li><a href="{{ url('/list-user') }}">List User</a></li>
+                    @endif
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
 
                     <ul class="dropdown-menu dropdown-user">
-                    @if (Auth::guest())
-                    @else
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ Auth::user()->fullname }}</a>
-                        @endif
+
                         </li>
                         <li class="divider"></li>
                         <li>  <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
+                    @endif
                     </ul>
                 </li>
             </ul>

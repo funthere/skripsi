@@ -12,7 +12,7 @@
 @endif
 <h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-fighter-jet" aria-hidden="true"></i> Ongoing Proyek</h3>
     <?php
-    foreach ($datas as $data) { ?>
+    foreach ($datas->where('status_progress', 'on_going') as $data) { ?>
     <div class="col-lg-6">
         <div class="panel panel-primary">
             <div class="panel-heading"><center><?php echo $data['project_name'] ?></center>
@@ -20,7 +20,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <?php echo $data['description'] ?><br/>
-                <b>Start:<?php echo $data->start_datetime ?>
+                <b>Start:<?php echo $data->start_datetime ?> |
                 End: <?php echo $data->finish_datetime ?></b><br/>
                 <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a>
             </div>
@@ -30,9 +30,10 @@
     </div>
     <?php }
     ?>
+    <br><br><hr>
 <h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-check-square-o" aria-hidden="true"></i> Completed Proyek</h3>
     <?php
-    foreach ($datas as $data) { ?>
+    foreach ($datas->where('status_progress', 'complete') as $data) { ?>
     <div class="col-lg-6">
         <div class="panel panel-primary">
             <div class="panel-heading"><center><?php echo $data['project_name'] ?></center>
