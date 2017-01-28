@@ -1,5 +1,4 @@
-@extends('layouts.main')
-
+@extends('layouts.main') 
 @section('content')
 
 @if (session('status'))
@@ -12,16 +11,15 @@
         {{ session('error') }}
     </div>
 @endif
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                <center>{{ isset($project) ? $project->project_name : '' }}</center>
-                </div>
-                
-                {!! Form::open(['route'=>'project.create']) !!}
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading">
+            @if(auth()->user()->role != "member" && !isset($project->project_name))
+            <b><center>Add Project</center></b>
+            @endif
+            <b><center>{{ isset($project) ? $project->project_name : '' }}</center></b>
+            </div>
+            {!! Form::open(['route'=>'project.create']) !!}
                     @if (isset($project))
                         <input type="hidden" name="id" value="{{ $project->id }}">
                     @endif
@@ -49,7 +47,6 @@
                                 <label for="to">&nbsp;To</label>
                                 <input id="dateTo" type="date" name="dateTo" value="{{ isset($project) ? $project->finish_datetime : '' }}" required <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                             </div>
-
                         </div>
                         <br/><br/>
 
@@ -73,47 +70,45 @@
                         </div>
 
                         <br/><br/>
-                    @if(auth()->user()->role != "member")
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-6">
-                                <button type="submit" class="btn btn-primary">
-                                    <?php echo isset($project) ? "Save" : "Create"; ?>
-                                </button>
-                                <a href="{!! url('/list-project'); !!}" class="btn btn-primary">
-                                 <!-- <button class="btn btn-primary"> -->
-                                    Cancel
-                                <!-- </button> -->
-                                </a>
-                            </div>
+                    @if(auth()->user()->role != "member") 
+                        <div class="form-group"><br/>
+                        <label for="prjDescription" class="col-md-4 control-label"></label>
+                        <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">
+                            <?php echo isset($project) ? "Save" : "Create"; ?>
+                        </button>
+                        </div>
+                        <div class="col-md-2">
+                        <a href="{!! url('/list-project'); !!}" class="btn btn-primary">
+                            <!-- <button class="btn btn-primary"> -->
+                            Cancel
+                            <!-- </button> -->
+                        </a>
                         </div>
                     @endif
                 {!! Form::close() !!}
-
-            </div>
-        </div>
-    </div>
-</div>
-
-    <script>
-        $('#team_member').select2({
-            placeholder: "Choose member...",
-            minimumInputLength: 2,
-            ajax: {
-                url: '/users/find',
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        q: $.trim(params.term)
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                },
+<script>
+    $('#team_member').select2({
+    placeholder: "Choose member...",
+    minimumInputLength: 2,
+    ajax: {
+        url: '/users/find',
+        dataType: 'json',
+        data: function (params) 
+        {
+            return  
+                {
+                    q: $.trim(params.term)
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
                 cache: true
             }
         });
-    </script>
+</script>
 @endsection
 

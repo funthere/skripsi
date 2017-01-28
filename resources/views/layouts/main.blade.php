@@ -23,6 +23,9 @@
     <!-- Custom Fonts -->
     <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
 
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -79,12 +82,16 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <script src="/js/jquery.min.js"></script>
+            <!-- <script src="/js/bootstrap.min.js"></script> -->
+            <script src="/js/select2.min.js"></script>
+
             <div class="row">
              @if (isset($hideMenu) || Request::is('login'))
 
         @else
             <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -102,7 +109,7 @@
                     </div>
                 </div>
                  <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -121,7 +128,7 @@
                 </div>
                
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -139,7 +146,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -158,7 +165,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-warning">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -177,7 +184,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-brown">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
