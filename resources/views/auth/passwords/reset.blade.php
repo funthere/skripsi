@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -13,11 +13,9 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password {{ empty(auth()->user()->fullname) ? '' : '' . auth()->user()->fullname }}</div>
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading"><center><b>Reset Password {{ empty(auth()->user()->fullname) ? '' : '' . auth()->user()->fullname }}</b></center></div>
 
                 <div class="panel-body">
                     @if (session('status'))

@@ -17,33 +17,7 @@
      <div class="panel panel-info">
             <div class="panel-heading">
                 <center>{{ $project->project_name or '' }}</center>
-                </div>
-                <br/>
-                <center>Project Upload</center>
-                <!-- @if (count($project->documents) > 0)
-                    <table class="table" border="1">
-                    <tr>
-                        <th>File Name</th>
-                        <th>Uploaded By</th>
-                        <th>Uploaded At</th>
-                        <th>Action</th>
-                    </tr>
-                    @foreach($project->documents as $file)
-                        <tr>
-                            <td>{!! $file->file_name !!}</td>
-                            <td>{!! isset($file->owner) && isset($file->owner->fullname) ? $file->owner->fullname : '' !!}</td>
-                            <td>{!! $file->created_at !!}</td>
-                            <td>
-                                @if($file->user_id == auth()->user()->id)
-                                {!! Form::open(['route' => ['document.delete', 'file_id' => $file->id], 'method' => 'delete']) !!}
-                                <input type="hidden" name="file_id" value="{{ $file->id }}">
-                                <button type="submit" class="btn btn--blue" value="Download">Delete</button> {!! Form::close() !!}
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                    </table>
-                @endif -->
+                </div> 
                 <br/>
                 {!! Form::model($project, ['files'=> true, 'id'=>'form_documents']) !!}
                     <div id="form-file">
@@ -56,17 +30,15 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn--blue btn-add-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-plus"></i>  </button>
+                                <button class="btn btn-warning btn-add-file" type="button" style="min-width: 40%;"><i class="fa fa-fw fa-plus"></i>  </button>
                             </div>
                         <br/>
                         </div>
                     </div>
                         <div class="form-group">
-                            <div class="col-md-3 col-md-offset-2">
-                                <!-- <button type="cancel" class="btn ">
-                                    Cancel
-                                </button> -->
-                        &nbsp&nbsp&nbsp&nbsp</span><span class="col-md-8"></span><input class="btn btn-primary" type="submit" onClick="if ($('#inputPassword').val() != $('#inputPasswordConfirm').val()) { alert('Your password and password confirmation not the same!'); return false;  } else { return true; }" value="Upload"/>
+                            <div class="col-md-6">
+                
+                        &nbsp;&nbsp;&nbsp;&nbsp;</span><span class="col-md-8"></span><input class="btn btn-primary" type="submit" onClick="if ($('#inputPassword').val() != $('#inputPasswordConfirm').val()) { alert('Your password and password confirmation not the same!'); return false;  } else { return true; }" value="Upload"/>
                             </div>
                         </div>
                     <br/><br/><br/>

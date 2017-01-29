@@ -13,18 +13,18 @@
                     <br/>
                         <label for="message" class="col-md-2 control-label">Message</label>
                         <div class="col-md-10">
-                            <TEXTAREA id="prjDescription" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? 'disabled' : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
+                            <TEXTAREA id="prjDescription" rows="8" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? 'disabled' : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
                         </div>
-                    </div>
-                    <br/><br/><br/>
+                    </div> 
                     @if(auth()->user()->role != "member")
                     <div class="form-group">
-                        <div class="col-md-8 col-md-offset-6">
+                        <div class="col-md-8 col-md-offset-2">
+                         <br/>
                             <button type="submit" class="btn btn-primary">
                                 Save
                             </button>
-                            <a href="{!! url('/list-project'); !!}" class="btn btn-primary">
-                                Cancel
+                            <a href="{!! url('/message-board/'.$project->id) !!}" class="btn btn-primary">
+                                Reset
                             </a>
                         </div>
                     </div>

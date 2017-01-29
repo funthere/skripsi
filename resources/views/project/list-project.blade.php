@@ -10,6 +10,7 @@
 @if(auth()->user()->role != "member")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href='{!! url('/add-project'); !!}'>Add New Project</a>
 @endif
+<div class="row">
 <h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-fighter-jet" aria-hidden="true"></i> Ongoing Proyek</h3>
     <?php
     foreach ($datas->where('status_progress', 'on_going') as $data) { ?>
@@ -31,6 +32,8 @@
     <?php }
     ?>
     <br><br><hr>
+</div>
+<div class="row">
 <h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-check-square-o" aria-hidden="true"></i> Completed Proyek</h3>
     <?php
     foreach ($datas->where('status_progress', 'complete') as $data) { ?>
@@ -51,4 +54,5 @@
     </div>
     <?php }
     ?>
+</div>
 @endsection

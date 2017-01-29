@@ -8,18 +8,18 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">List User</div>
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading"><center><b>List User</b></center></div>
                 <span>
+                    <br/>&nbsp;&nbsp;&nbsp;
                     <a href='{!! url('/register'); !!}' class="btn btn-primary">Add New User</a>
                 </span>
-                <table class="table">
+                <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
                 <tr>
-                    <th>Full Name</th>
                     <th>Username</th>
+                    <th>Fullname</th>
                     <th>Email</th>
                     <th>Role</th>
                 </tr>
@@ -35,8 +35,7 @@
                     <?php }
                     ?>
                 </table>
-            </div>
+                </div>
+             </div>
         </div>
-    </div>
-</div>
 @endsection
