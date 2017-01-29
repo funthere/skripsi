@@ -15,7 +15,7 @@
 
 <div class="col-lg-12">
      <div class="panel panel-info">
-            <div class="panel-heading"><center><b>Reset Password {{ empty(auth()->user()->fullname) ? '' : '' . auth()->user()->fullname }}</b></center></div>
+            <div class="panel-heading"><center><b>Change Password {{ empty(auth()->user()->fullname) ? '' : '' . auth()->user()->fullname }}</b></center></div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -71,8 +71,9 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Reset Password
+                                    Change Password
                                 </button>
+                                <a href="{{url('/change-password')}}" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
                     </form>
