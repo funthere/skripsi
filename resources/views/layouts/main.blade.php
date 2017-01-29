@@ -72,6 +72,11 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
+                        <li>
+                            <a href="{{ url('/change-password') }}" >
+                                Change Password
+                            </a>
+                        </li>
                     @endif
                     </ul>
                 </li>
@@ -96,7 +101,7 @@
 
         @else
             <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-success">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 1 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -114,7 +119,7 @@
                     </div>
                 </div>
                  <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-info">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 2 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -133,7 +138,7 @@
                 </div>
                
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-success">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 3 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -151,7 +156,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-danger">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 4 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -170,7 +175,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 5 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -189,7 +194,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-5">
-                    <div class="panel panel-info">
+                    <div class="panel panel-{{ isset($menuActive) && $menuActive == 6 ? 'primary' : 'info' }}">
                         <div class="panel-heading">
                             <div class="row">
                                 <div align="center">
@@ -207,8 +212,8 @@
                     </div>
                 </div>
             </div>
-            @endif
             <hr class="panel-primary">
+            @endif
             <!-- /.row -->
             <div class="row">  
             @yield('content')

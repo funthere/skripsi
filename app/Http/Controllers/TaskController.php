@@ -26,6 +26,30 @@ class TaskController extends BaseController
         }
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+        // After Created / Updated
+        static::saved(function ($model) {
+            // Check Reallocation of Product
+            dd($model);
+            $project = Project::find($model->project_id);
+            if ($project) {
+                $query = Task::where('project_id', $project->id);
+                $countTask = $query->count();
+                $countOpen = $query->where('status', 'active')->count();
+                if ($countTask > 0 && $countOpen == 0) {
+                    // Jika tidak ada lagi task yang active, maka update status project menjadi done.
+                    $project->status_progress = 'completed';
+                } else {
+                    $project->status_progress = 'on_going';
+                }
+
+                $project->save();
+            }
+        });
+    }
+
     public function viewTask($projectId, $sprintId)
     {
         $datas = Task::where(['project_id' => $projectId, 'sprint_id' => $sprintId])->get();
@@ -41,6 +65,7 @@ class TaskController extends BaseController
 
     public function viewTaskMember($projectId)
     {
+        View::share('menuActive', 3);
         $datas = Task::where(['project_id' => $projectId])->get();
         $datas = $datas->groupBy('sprint_id');
         // dd($datas);
@@ -157,8 +182,22 @@ class TaskController extends BaseController
             } else {
                 $task->status = Task::STATUS_ACTIVE;
             }
+            $result = $task->save();
+                $project = Project::find($task->project_id);
+                $query = Task::where('project_id', $project->id);
+
+                $countTask = $query->count();
+                $countOpen = $query->where('status', 'active')->count();
+                if ($countTask > 0 && $countOpen == 0) {
+                    // Jika tidak ada lagi task yang active, maka update status project menjadi done.
+                    $project->status_progress = 'complete';
+                } else {
+                    $project->status_progress = 'on_going';
+                }
+                // dd($project);
+
+                $project->save();
+            return response()->json($result);
         }
-        $result = $task->save();
-        return response()->json($result);
     }
 }

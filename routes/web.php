@@ -68,5 +68,6 @@ Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatCo
 
 Route::get('/clearing-chat', 'ProjectController@clearing');
 Route::get('/users/find', 'UserController@find');
+Route::get('/test', 'ProjectController@test');
 
 Route::post('get-file', ['as' => 'download', 'uses' => 'ProjectDocumentController@getFile']);

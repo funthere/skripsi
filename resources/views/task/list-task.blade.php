@@ -12,7 +12,7 @@
      <div class="panel panel-info">
             <div class="panel-heading"><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
                 </div>
-                @if(auth()->user()->role != "member")
+                @if(auth()->user()->role != "member" || auth()->user()->role == "administrator")
                 <br/>
                 <span>
                     &nbsp;&nbsp;&nbsp;<a href='{!! url('/view-sprint', ['projectId' => $projectId]); !!}'>Back To Sprint</a>

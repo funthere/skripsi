@@ -98,13 +98,26 @@ class ProjectController extends BaseController
     public function listProject()
     {
         View::share('hideMenu', true);
-        $datas = Project::with('user')->get();
+        $projects = Project::with('user', 'tasks')->where('status_progress', 'on_going')->get();
+        $projects2 = Project::with('user')->where('status_progress', 'complete')->get();
+        $datas = [];
+        foreach ($projects as $project) {
+            $project->taskTotal = $project->tasks->count();
+            if ($project->taskTotal == 0) {
+                $project->taskClosed = 0;
+            } else {
+                $project->taskClosed = ($project->tasks->where('status', 'done')->count() / $project->taskTotal) * 100;
+            }
+            $datas[] = $project;
+        }
+        // dd($datas);
         
-        return View('project.list-project', ['datas' => $datas]);
+        return View('project.list-project', ['datas' => $datas, 'projects2' => $projects2]);
     }
 
     public function view($id)
     {
+        View::share('menuActive', 1);
         $project = Project::with('userProjects.user')->find($id);
         if ($project) {
             return view('project.view-project', ['project' => $project]);
@@ -129,6 +142,7 @@ class ProjectController extends BaseController
 
     public function messageBoard($id)
     {
+        View::share('menuActive', 2);
         $project = Project::find($id);
         if ($project) {
             return view('project.message-board')->with(['project' => $project]);
@@ -149,5 +163,4 @@ class ProjectController extends BaseController
     {
         return view('project.view-message-board');
     }
-   
 }

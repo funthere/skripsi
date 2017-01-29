@@ -14,6 +14,7 @@ class ProjectDocumentController extends BaseController
 {
 	public function upload($id)
     {
+        View::share('menuActive', 4);
         $project = Project::with('documents')->find($id);
         if ($project) {
             // dd($project->documents);
@@ -78,6 +79,7 @@ class ProjectDocumentController extends BaseController
 
     public function download($id)
     {
+        View::share('menuActive', 5);
         $project = Project::with('documents.owner')->find($id);
         // dd($project->documents);
         if ($project) {
