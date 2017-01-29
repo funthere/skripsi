@@ -47,7 +47,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    
                 @else
                     @if (Auth::user()->role == "administrator")
                         <li><a href="{{ url('/list-user') }}">List User</a></li>
@@ -58,9 +58,16 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ Auth::user()->fullname }}</a>
-
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ Auth::user()->fullname }}</a> 
                         </li>
+                        @if(auth()->user()->role != "administrator")
+                        <li class="divider"></li>
+                         <li>
+                                <a href="{{ url('/change-password') }}" >
+                                    Change Password
+                                </a>
+                        </li>
+                        @endif
                         <li class="divider"></li>
                         <li>  <a href="{{ url('/logout') }}"
                                 onclick="event.preventDefault();
@@ -97,7 +104,7 @@
             <script src="/js/select2.min.js"></script>
 
             <div class="row">
-             @if (isset($hideMenu) || Request::is('login'))
+             @if (isset($hideMenu) || Request::is('login') || Request::is('register') )
 
         @else
             <div class="col-lg-2 col-md-5">

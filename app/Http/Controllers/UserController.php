@@ -45,6 +45,8 @@ class UserController extends BaseController
 
     public function changePassword()
     {
+        View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
+        View::share('hideHome', true);
         return view('auth.passwords.reset');
     }
 

@@ -57,6 +57,8 @@ class RegisterController extends Controller
 
     public function create()
     {
+        View::share('hideMenu', true); // Fungsinya untuk menyembunyikan menu dari halaman yang akan dipanggil.
+        View::share('hideHome', true);
         return view('auth.register');
     }
 

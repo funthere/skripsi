@@ -9,10 +9,10 @@
 @endif
 
 <div class="col-lg-12">
-     <div class="panel panel-info">
+     <div class="panel panel-info"> 
+                @if(auth()->user()->role != "member" || auth()->user()->role == "administrator"))
             <div class="panel-heading"><center>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</center>
                 </div>
-                @if(auth()->user()->role != "member" || auth()->user()->role == "administrator")
                 <br/>
                 <span>
                     &nbsp;&nbsp;&nbsp;<a href='{!! url('/view-sprint', ['projectId' => $projectId]); !!}'>Back To Sprint</a>
@@ -20,18 +20,17 @@
                 </span>
                 @endif
                 @if (auth()->user()->role == "member")
+                <div class="panel-heading"> <center><b>{{ $project->project_name or '' }}</b></center>
+                </div>
                    <div class="form-group">
                    <br/><br/> &nbsp;&nbsp;&nbsp;
-                        <label for="email" class="col-md-4 control-label">Select Sprint</label> 
-                         <div class="col-md-4">
+                        <label>Select Sprint&nbsp;&nbsp;</label>  
                             <select name="sprint" class="form-input" id="sprint" required>
                                 <option value="">--- select sprint --</option>
                                     @foreach($project->sprints as $sprint)
                                         <option value="{{ $sprint->id }}"}}>{{ "Sprint " . $sprint->sprint }}</option>
                                     @endforeach
-                            </select>
-                        </div>
-                    </div>
+                            </select> 
                     <div id="content-member">
                         
                     </div>
