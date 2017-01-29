@@ -1,62 +1,47 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('content')
+@section('content') 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default"> 
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
-                        <br/>
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-3 control-label"></label>
-                            <div class="col-md-6">
-                            <label for="username">Username</label> 
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}"> 
-                            <label for="username" class="col-md-3 control-label"></label>
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                            <fieldset>
+                                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                     <label for="username">&nbsp;&nbsp;&nbsp;Username</label> 
+                                </div>
+                                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                   <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-3 control-label"></label>
-                            <div class="col-md-6">
-                            <label for="password">Password</label>     
-                            </div>                        
-                        </div>
-                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-3 control-label"></label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                     <label for="password">&nbsp;&nbsp;&nbsp;Password</label>     
+                                </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                   <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-5">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                                </div>
+                                
+                                <button class="btn btn-lg btn-primary btn-block">Login</button>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

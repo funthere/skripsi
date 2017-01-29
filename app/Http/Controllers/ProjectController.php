@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-// use App\User;
+use App\User;
 use App\UserProject;
 use Illuminate\Support\Facades\Auth;
 use View, Redirect;
@@ -97,10 +97,18 @@ class ProjectController extends BaseController
 
     public function listProject()
     {
-        View::share('hideMenu', true);
-        $datas = Project::with('user')->get();
-        
-        return View('project.list-project', ['datas' => $datas]);
+        if(auth()->user()->role == "administrator")
+        {
+            $users = User::all();
+            View::share('hideMenu', true);
+            return view('user.list-user', compact('users'));
+        }
+        else
+        {
+            View::share('hideMenu', true);
+            $datas = Project::with('user')->get();
+            return View('project.list-project', ['datas' => $datas]);
+        }
     }
 
     public function view($id)

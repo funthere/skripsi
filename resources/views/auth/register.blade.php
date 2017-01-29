@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -8,11 +8,9 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register a User</div>
+<div class="col-lg-12">
+     <div class="panel panel-info">
+            <div class="panel-heading"><center><b>Add New User</b></center></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register-user') }}">
                         {{ csrf_field() }}
@@ -62,7 +60,7 @@
                         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
                             <label for="role" class="col-md-4 control-label">Role</label>
                             <?php
-                                $roles = ['member' => 'Member', 'management' => 'Menagement'];
+                                $roles = ['member' => 'Member', 'management' => 'Management'];
                             ?>
                             <div class="col-md-6">
                                 <select name="role" class="form-input" id="role" required>
