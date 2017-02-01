@@ -55,15 +55,22 @@
                             <div class="col-md-7">
                                 <!-- <input id="teamId" type="text" class="form-control" name="teamName" > -->
                                 <select id="team_member" name="team_member[]" class="form-control" multiple <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
-                                <?php 
-                                    if (isset($project)) :
-                                    foreach($project->userProjects as $key => $userProject):
-                                        // $chk = in_array($key, $payment_method) ? 'selected' : '';
+                                    <?php
+                                    $types = \App\User::all()->pluck('fullname', 'id')->toArray();
+
+                                    foreach($types as $key => $type):
+                                        $chk = '';
+                                        if(isset($project)) {
+                                            $member = [];
+                                            foreach ($project->userProjects as $user) {
+                                                $member[$user->id] = $user->user->id;
+                                            }
+                                            $chk = in_array($key, $member) ? 'selected' : '';
+                                        }
                                 ?>
-                                    <option value="<?php echo $userProject->user->id; ?>" <?php echo "selected"; ?>><?php echo $userProject->user->fullname; ?></option>
+                                    <option value="<?php echo $key; ?>" <?php echo $chk; ?>><?php echo $type; ?></option>
                                 <?php
                                     endforeach;
-                                    endif;
                                 ?>
                                 </select>
                             </div>
@@ -88,27 +95,39 @@
                     @endif
                 {!! Form::close() !!}
 <script>
+
+$(function() {
+    // $('#team_member').select2({
+    // placeholder: "Choose member...",
+    // minimumInputLength: 2,
+    // ajax: {
+    //     url: '/users/find',
+    //     dataType: 'json',
+    //     data: function (params) 
+    //     {
+    //         return  
+    //             {
+    //                 q: $.trim(params.term)
+    //             };
+    //         },
+    //         processResults: function (data) {
+    //             return {
+    //                 results: data
+    //             };
+    //         },
+    //             cache: true
+    //         }
+    //     });
+
     $('#team_member').select2({
-    placeholder: "Choose member...",
-    minimumInputLength: 2,
-    ajax: {
-        url: '/users/find',
-        dataType: 'json',
-        data: function (params) 
-        {
-            return  
-                {
-                    q: $.trim(params.term)
-                };
-            },
-            processResults: function (data) {
-                return {
-                    results: data
-                };
-            },
-                cache: true
-            }
-        });
+    
+    });
+
+    $('.team').select2({
+    
+    });
+
+});
 </script>
 @endsection
 
