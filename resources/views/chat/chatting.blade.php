@@ -4,7 +4,7 @@
 <div class="col-lg-12">
      <div class="panel panel-info">
             <div class="panel-heading">
-                <center>{{ $project->project_name or '' }}</center>
+                <center><b>{{ $project->project_name or '' }}</b></center>
                 </div>
                 <br/>
                 <center>_______tanggal chat________</center>

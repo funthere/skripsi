@@ -1,9 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-warning">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="col-lg-12">
      <div class="panel panel-info">
-            <div class="panel-heading"><center>{{ $project->project_name or '' }}</center>
+            <div class="panel-heading"><center><b>{{ $project->project_name or '' }}</b></center>
                 </div>
 
                 {!! Form::open(['route' => ['message-board.save', $project->id]]) !!}
