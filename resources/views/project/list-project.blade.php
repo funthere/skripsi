@@ -43,8 +43,9 @@
         $counter++;
         }
     ?>
-    <br><br><hr>
+    <br><br>
 </div>
+<hr/>
 <div class="row">
 <h3>&nbsp;&nbsp;&nbsp;<i class="fa fa-check-square-o" aria-hidden="true"></i> Completed Proyek</h3>
     <?php
