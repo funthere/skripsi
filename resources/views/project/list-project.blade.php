@@ -27,8 +27,8 @@
                 <input type="hidden" id="data-closed{{$counter}}" value="{{$data->taskClosed}}">
                 <input type="hidden" id="data-total{{$counter}}" value="{{$data->taskTotal}}"></td>
             <td> <?php echo $data['description'] ?><br/>
-                <b>Start:<?php echo $data->start_datetime ?> |
-                End: <?php echo $data->finish_datetime ?></b><br/>
+                <b>Start : <?php echo date_format(date_create($data->start_datetime), 'd M Y')?> |
+                End : <?php echo date_format(date_create($data->finish_datetime), 'd M Y') ?></b><br/>
                 <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a></td>
             </tr>
             </table>
@@ -56,8 +56,8 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <?php echo $data['description'] ?><br/>
-                <b>Start:<?php echo $data->start_datetime ?>
-                End: <?php echo $data->finish_datetime ?></b><br/>
+                b>Start : <?php echo date_format(date_create($data->start_datetime), 'd M Y')?> |
+                End : <?php echo date_format(date_create($data->finish_datetime), 'd M Y') ?></b><br/>
                 <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a>
             </div>
             <!-- /.panel-body -->
