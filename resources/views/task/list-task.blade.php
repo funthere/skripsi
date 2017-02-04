@@ -88,18 +88,19 @@
                 });
             // }
         });
-    });
+        $('#sprint').trigger('change');
 
 
-    $('#content-member').on('click', '.btn-change-status', function(){
-        var url = $(this).data('url'),
-        typeid = $(this).data('typeid');
+        $('#content-member').on('click', '.btn-change-status', function(){
+            var url = $(this).data('url'),
+            typeid = $(this).data('typeid');
 
-        $.get("{{ url('change-status-ajax')}}", { task_id: typeid },
-            function(data) {
-                if (data) {
-                    $('#sprint').trigger('change');
-                }
+            $.get("{{ url('change-status-ajax')}}", { task_id: typeid },
+                function(data) {
+                    if (data) {
+                        $('#sprint').trigger('change');
+                    }
+            });
         });
     });
 </script>
