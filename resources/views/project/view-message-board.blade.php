@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"></a><center>{{ $project->project_name or '' }}</center> 
+                <div class="panel-heading"></a><center><b>{{ $project->project_name or '' }}</b></center> 
                 </div>
                 <div class="panel-body">
                     <div class="form-group">

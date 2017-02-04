@@ -18,7 +18,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <center>{{ isset($project) ? $project->project_name : '' }} {{ isset($sprintId) ? ' => Sprint ' . $sprint->id : '' }}</center>
+                <center><b>{{ isset($project) ? $project->project_name : '' }} {{ isset($sprintId) ? ' => Sprint ' . $sprint->id : '' }}</b></center>
                 </div>
 
                 {!! Form::open(['route' => ['task.create', $project->id, $sprint->id]]) !!}

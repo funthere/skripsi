@@ -16,7 +16,7 @@
 <div class="col-lg-12">
      <div class="panel panel-info">
             <div class="panel-heading">
-                <center>{{ $project->project_name or '' }}</center>
+                <center><b>{{ $project->project_name or '' }}</b></center>
                 </div> 
                 <br/>
                 {!! Form::model($project, ['files'=> true, 'id'=>'form_documents']) !!}

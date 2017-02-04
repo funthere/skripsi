@@ -103,6 +103,25 @@ class ProjectController extends BaseController
             View::share('hideMenu', true);
             return view('user.list-user', compact('users'));
         }
+        else if(auth()->user()->role == "management")
+        {
+             View::share('hideMenu', true);
+           $projects = Project::with('user', 'tasks')->where('status_progress', 'on_going')->get();
+          $projects2 = Project::with('user')->where('status_progress', 'complete')->get(); 
+            $datas = [];
+            foreach ($projects as $project) {
+                $project->taskTotal = $project->tasks->count();
+                if ($project->taskTotal == 0) {
+                    $project->taskClosed = 0;
+                } else {
+                    $project->taskClosed = ($project->tasks->where('status', 'done')->count() / $project->taskTotal) * 100;
+                }
+                $datas[] = $project;
+            }
+        // dd($datas);
+        return View('project.list-project', ['datas' => $datas, 'projects2' => $projects2]);
+
+        }
         else
         {
             View::share('hideMenu', true);
