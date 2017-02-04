@@ -15,14 +15,9 @@
 
 <div class="col-lg-12">
      <div class="panel panel-info">
-            <div class="panel-heading"><center><b>Change Password {{ empty(auth()->user()->fullname) ? '' : '' . auth()->user()->fullname }}</b></center></div>
+            <div class="panel-heading"><center><b>Change Password</b></center></div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="panel-body"> 
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/save-password') }}">
                         {{ csrf_field() }}
@@ -71,9 +66,9 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Change Password
+                                    Change
                                 </button>
-                                <a href="{{url('/change-password')}}" class="btn btn-primary">Cancel</a>
+                                <a href="{{url('/change-password')}}" class="btn btn-primary">Reset</a>
                             </div>
                         </div>
                     </form>

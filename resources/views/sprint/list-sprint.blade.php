@@ -9,7 +9,7 @@
 @endif
 <div class="col-lg-12">
      <div class="panel panel-info">
-            <div class="panel-heading"><center>{{ isset($project) ? $project->project_name : '' }}</center>
+            <div class="panel-heading"><center><b>{{ isset($project) ? $project->project_name : '' }}</b></center>
                 </div>
                 <br/><span>&nbsp;&nbsp;&nbsp;
                     <a href='{!! url('/add-sprint/'.$project['id']); !!}'>Add New Sprint</a>
