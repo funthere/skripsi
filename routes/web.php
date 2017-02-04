@@ -71,3 +71,4 @@ Route::get('/users/find', 'UserController@find');
 Route::get('/test', 'ProjectController@test');
 
 Route::post('get-file', ['as' => 'download', 'uses' => 'ProjectDocumentController@getFile']);
+Route::get('chat-send', ['as' => 'chat.send', 'uses' => 'ChatController@sendChat']);
