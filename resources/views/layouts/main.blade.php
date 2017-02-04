@@ -51,6 +51,7 @@
                 @else
                     @if (Auth::user()->role == "administrator")
                         <li><a href="{{ url('/list-user') }}">List User</a></li>
+                        <li><a href="{{ url('/clearing-chat') }}">Clear CHat</a></li>
                     @endif
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
