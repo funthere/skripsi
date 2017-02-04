@@ -66,7 +66,9 @@ Route::delete('/delete-file/{file_id}', ['as' => 'document.delete', 'uses' => 'P
 
 Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
 
-Route::get('/clearing-chat', 'ProjectController@clearing');
+Route::get('/clearing-chat', ['as' => 'chat.clear', 'uses' => 'ChatController@clearing']);
+Route::post('/clearing-chat', ['as' => 'chat.clear.save', 'uses' => 'ChatController@clearingSave']);
+
 Route::get('/users/find', 'UserController@find');
 Route::get('/test', 'ProjectController@test');
 

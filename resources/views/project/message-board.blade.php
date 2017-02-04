@@ -23,7 +23,7 @@
                     <br/>
                         <label for="message" class="col-md-2 control-label">Message</label>
                         <div class="col-md-10">
-                            <TEXTAREA id="prjDescription" rows="8" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? 'disabled' : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></TEXTAREA> 
+                            <textarea id="prjDescription" contenteditable="true" rows="8" name="prjDescription" class="form-control" {!! auth()->user()->role == "member" ? 'disabled' : '' !!}><?php echo isset($project) ? $project->message_board : ''; ?></textarea> 
                         </div>
                     </div> 
                     @if(auth()->user()->role != "member")
@@ -46,4 +46,12 @@
         </div>
     </div>
 </div>
+
+<script src="/js/ckeditor/ckeditor.js"></script>
+{{-- <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> --}}
+<script>
+    CKEDITOR.replace( 'prjDescription' );
+</script>
 @endsection
+
+

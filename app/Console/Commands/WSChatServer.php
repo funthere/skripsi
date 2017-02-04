@@ -45,7 +45,7 @@ class WSChatServer extends Command
     public function handle()
     {
         // $port = intval($this->option('port'));
-        $port = intval(9090);
+        $port = 9090;
 
         $this->info("Starting chat web socket server on port " . $port);
         

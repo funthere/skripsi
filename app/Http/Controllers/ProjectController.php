@@ -188,7 +188,7 @@ class ProjectController extends BaseController
             $project->message_board = request('prjDescription');
             $project->save();
         }
-        return Redirect::route('message-board.create', ['id' => $project->id])->with(['project' => $project]);
+        return Redirect::route('message-board.create', ['id' => $project->id])->with(['project' => $project])->with('status', 'Data successfully saved!');
     }
 
     public function viewMessage()

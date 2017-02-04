@@ -62,7 +62,8 @@
 </div>
 
 <!-- Latest Vue JS CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script> --}}
+<script src="/assets/js/vue.min.js"></script>
 
 <script>
 	
@@ -153,11 +154,18 @@
 				});
 			},
 			addServerMessage : function(message){
-				this.addMessage({
-					"msg" 	: message.split(':')[1].trim(),
-					"class"	: "user",
-					"who"	: message.split(':')[0].trim()
-				});
+				console.log("{{$projectId}}");
+
+				if (typeof message.split(':')[2] !== 'undefined') {
+					var channel = message.split(':')[2].trim();
+				}
+				if(channel && channel == "{{$projectId}}") {
+					this.addMessage({
+						"msg" 	: message.split(':')[1].trim(),
+						"class"	: "user",
+						"who"	: message.split(':')[0].trim()
+					});
+				}
 			},
 			addMeAmessage : function(message){
 				this.addMessage({
@@ -184,7 +192,7 @@
 				if (!this.newMessage.length)
 					return;
 
-				var msgToSend = this.userName+":"+ this.newMessage;
+				var msgToSend = this.userName+":"+ this.newMessage+":"+"{{$projectId}}";
 				// var url = $(this).data('url'),
 		        // typeid = $(this).data('typeid');
 
