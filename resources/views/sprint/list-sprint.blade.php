@@ -25,7 +25,7 @@
                     foreach ($project->sprints as $sprint) { ?>
                         <tr>
                         <td>
-                            <a href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Sprint <?php echo $sprint["id"]?> </a> 
+                            <a href='{!! url('/view-todo-list/'.$project->id.'/'.$sprint->id); !!}'> Sprint <?php echo $sprint["sprint"]?> </a> 
                         </td>
                         <td>
                             Open: <?php echo $sprint->tasks->where('status', 'active')->count(); ?>
