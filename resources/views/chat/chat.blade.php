@@ -151,7 +151,7 @@
 					this.addMessage({
 						"msg" 	: message.split(':')[1].trim(),
 						"class"	: "user",
-						"who"	: message.split(':')[0].trim()
+						"who"	: "<?php echo '(' . date('Y-m-d H:i:s') . ')' ?>" + message.split(':')[0].trim()
 					});
 				}
 			},
@@ -159,7 +159,7 @@
 				this.addMessage({
 					"msg" 	: message,
 					"class"	: "mine",
-					"who"	: "Me"
+					"who"	: "<?php echo '(' . date('Y-m-d H:i:s') . ') ' ?>" + " Me"
 				});
 			},
 			addMessage : function(message) {
