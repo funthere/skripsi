@@ -26,7 +26,7 @@
                                 
                             <div class="col-md-4">
                                 <div class="input-group date">
-                                    <input type="file" name="file[0]" required>
+                                    <input type="file" name="file[0]" required class="input_file" id=file0>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -62,7 +62,7 @@ $(document).ready(function() {
                 
                 '<div class="col-md-4">' +
                     '<div class="input-group date">' +
-                        '<input type="file" name="file[' + index + ']" required>' +
+                        '<input type="file" name="file[' + index + ']" required class="input_file" id="file'+index+'">' +
                     '</div>' +
                 '</div>' +
                 '<div class="col-md-2">' +
@@ -70,12 +70,41 @@ $(document).ready(function() {
                 '</div><br/>' +
             '</div>'
         );
+
+        $('#file'+index).bind('change', function(e) {
+          var f = this.files[0];
+          // alert(f.size);
+          if (f.size > 5*1024*1024 || f.fileSize > 5*1024*1024)
+            {
+               //show an alert to the user
+               alert("File to be uploaded can't exceeds 5 MB!")
+
+               //reset file upload control
+               this.value = null;
+            }
+
+        });
         index++;
     });
 
     $('#form-file').on('click', '.btn-delete-file', function() {
         $(this).parent().parent().remove();
     });
+
+    $('#file0').bind('change', function(e) {
+      var f = this.files[0];
+      // alert(f.size);
+      if (f.size > 5*1024*1024 || f.fileSize > 5*1024*1024)
+        {
+           //show an alert to the user
+           alert("File to be uploaded can't exceeds 5 MB!")
+
+           //reset file upload control
+           this.value = null;
+        }
+
+    });
+
 });
 </script>
 @stop
