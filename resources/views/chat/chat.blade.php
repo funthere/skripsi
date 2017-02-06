@@ -10,15 +10,10 @@
  	li.message.mine span.who   { font-weight: bold; }
 </style>
 
-<div class="container">
-
-	<div class="row">
-
-		<div>
-			
-			<div class="panel panel-default">
-				
-				<div class="panel-heading">Chat</div>
+<div class="col-lg-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <center><b>Chat - <?php echo Date('d M Y')?> </b></center></div>
 
 				<div class="panel-body" id="chat">
 					
@@ -51,14 +46,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<h3> Important note </h3>
-	
-
-	<p>
-		Enjoy! <br>.
-	</p>
+	</div> 
 </div>
 
 <!-- Latest Vue JS CDN -->

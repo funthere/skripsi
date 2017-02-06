@@ -10,9 +10,10 @@ use View, Redirect;
 use App\Chat;
 
 class ChatController extends BaseController
-{
+{ 
     public function chatting($id)
     {
+        View::share('menuActive', 6);
         $project = Project::with('userProjects.user')->find($id);
         if ($project) {
             // return view('chat.chatting', ['project' => $project]);

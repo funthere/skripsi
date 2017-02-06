@@ -26,6 +26,7 @@ class SprintController extends BaseController
 
     public function viewSprint($projectId)
     {
+         View::share('menuActive', 3);
         $project = Project::with('tasks')->find($projectId);
         if (auth()->user()->role == "member") {
         	return redirect()->route('task.list.member', ['project_id' => $project->id]);
