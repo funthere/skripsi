@@ -23,6 +23,7 @@ class ProjectDocumentController extends BaseController
     }
     public function uploadSave($id, Request $request)
     {
+        View::share('menuActive', 4);
         // dd($request->all());
         $project = Project::find($id);
         if ($project) {

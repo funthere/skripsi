@@ -16,11 +16,8 @@
 <div class="col-lg-12">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <center><b>{{ $project->project_name or '' }}</b></center>
-        </div>
-        <div class="panel-heading">
-            Clearing Chat
-        </div>
+            <center><b>Clear Chat</b></center>
+        </div> 
         <br/>
         <br/>
 
