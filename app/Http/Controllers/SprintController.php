@@ -39,6 +39,7 @@ class SprintController extends BaseController
 
     public function addSprint($projectId)
     {
+        View::share('menuActive', 3);
         $project = Project::find($projectId);
         if ($project) {
             $counter = ProjectSprint::where('project_id', $project->id)->count();
@@ -53,6 +54,7 @@ class SprintController extends BaseController
 
     public function delete($sprintId)
     {
+        View::share('menuActive', 3);
         // return back()->with('status', 'Data successfully deleted!');
         DB::transaction(function () use ($sprintId) {
             $sprint = ProjectSprint::find($sprintId);
