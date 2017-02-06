@@ -40,20 +40,20 @@ class ChatController extends BaseController
         }
     }
 
-    // public function sendChat()
-    // {
-    //     // dd(request()->all());
-    //     $message = request('message');
-    //     $projectId = request('project_id');
-    //     if (!empty($message) && !empty($projectId)) {
-    //         $chat = new Chat;
-    //         $chat->project_id = $projectId;
-    //         $chat->user_id = auth()->user()->id;
-    //         $chat->message = $message;
-    //         $saved = $chat->save();
-    //         return (string)$saved;
-    //     }
-    // }
+    public function sendChat()
+    {
+        // dd(request()->all());
+        $message = request('message');
+        $projectId = request('project_id');
+        if (!empty($message) && !empty($projectId)) {
+            $chat = new Chat;
+            $chat->project_id = $projectId;
+            $chat->user_id = auth()->user()->id;
+            $chat->message = $message;
+            $saved = $chat->save();
+            return (string)$saved;
+        }
+    }
 
     public function clearing()
     {
