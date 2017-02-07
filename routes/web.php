@@ -64,7 +64,7 @@ Route::post('/view-project-upload/{project_id}', 'ProjectDocumentController@uplo
 Route::get('/view-project-download/{project_id}', 'ProjectDocumentController@download');
 Route::delete('/delete-file/{file_id}', ['as' => 'document.delete', 'uses' => 'ProjectDocumentController@deleteFile']);
 
-Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@chatting']);
+Route::get('/chatting/{project_id}', ['as' => 'chat.chatting', 'uses' => 'ChatController@viewChat']);
 
 Route::get('/clearing-chat', ['as' => 'chat.clear', 'uses' => 'ChatController@clearing']);
 Route::post('/clearing-chat', ['as' => 'chat.clear.save', 'uses' => 'ChatController@clearingSave']);
