@@ -84,7 +84,7 @@ class ChatController extends BaseController
             // }
             // dd($delete);
             if ($delete || $countData == 0) {
-                return back()->with('status', "Data successfully deleted.");
+                return back()->with('status', "All chat on selected range date have been cleared successfully!");
             }
 
         }

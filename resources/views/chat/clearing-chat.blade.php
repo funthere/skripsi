@@ -55,7 +55,7 @@
             <div class="form-group">
                 <div class="col-md-4"> </div>
                 <div class="col-md-5">
-                    <button class="btn btn-primary">Clear Chat</button>
+                    <button class="btn btn-primary" onclick="return confirm('Are you sure to delete all chat on selected range date?')">Clear Chat</button>
                 </div>
             </div>
             <br/><br/><br/>
