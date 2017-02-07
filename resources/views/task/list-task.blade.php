@@ -11,7 +11,7 @@
 <div class="col-lg-12">
      <div class="panel panel-info"> 
                 @if(auth()->user()->role != "member" || auth()->user()->role == "administrator")
-            <div class="panel-heading"><center><b>{{ isset($sprint->sprint) ? 'List Task for Sprint' . $sprint->sprint : '' }}</b></center>
+            <div class="panel-heading"><center><b>{{ isset($sprint->sprint) ? 'List of Tasks in Sprint ' . $sprint->sprint : '' }}</b></center>
                 </div>
                 <br/>
                 <span>
