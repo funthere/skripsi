@@ -57,7 +57,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <?php echo $data['description'] ?><br/>
-                b>Start : <?php echo date_format(date_create($data->start_datetime), 'd M Y')?> |
+                <b>Start : <?php echo date_format(date_create($data->start_datetime), 'd M Y')?> |
                 End : <?php echo date_format(date_create($data->finish_datetime), 'd M Y') ?></b><br/>
                 <a class="btn btn-info" href='{!! url('/view-project/'.$data['id']); !!}'> View Detail </a>
             </div>

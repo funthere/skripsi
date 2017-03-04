@@ -56,20 +56,26 @@
                                 <!-- <input id="teamId" type="text" class="form-control" name="teamName" > -->
                                 <select id="team_member" name="team_member[]" class="form-control" multiple <?php echo auth()->user()->role == "member" ? 'disabled' : '' ?>>
                                     <?php
-                                    $types = \App\User::all()->pluck('fullname', 'id')->toArray();
+                                    $types = \App\User::select('fullname', 'id', 'role')->get();
 
-                                    foreach($types as $key => $type):
-                                        $chk = '';
-                                        if(isset($project)) {
-                                            $member = [];
-                                            foreach ($project->userProjects as $user) {
-                                                $member[$user->id] = $user->user->id;
+                                    foreach($types as $key => $member):
+                                        echo $member->role;
+                                        if ($member->role != "administrator" && auth()->user()->id != $member->id) {
+                                            var_dump($member->fullname);
+                                            $chk = '';
+                                            if(isset($project)) {
+                                                $memberUser = [];
+                                                foreach ($project->userProjects as $user) {
+                                                    $memberUser[$user->id] = $user->user->id;
+                                                }
+                                                $chk = in_array($member->id, $memberUser) ? 'selected' : '';
                                             }
-                                            $chk = in_array($key, $member) ? 'selected' : '';
-                                        }
+
+                                        
                                 ?>
-                                    <option value="<?php echo $key; ?>" <?php echo $chk; ?>><?php echo $type; ?></option>
+                                    <option value="<?php echo $member->id; ?>" <?php echo $chk; ?>><?php echo $member->fullname; ?></option>
                                 <?php
+                                    }
                                     endforeach;
                                 ?>
                                 </select>

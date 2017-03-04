@@ -48,17 +48,17 @@ class ProjectController extends BaseController
             $isUpdate = true;
         } else {
             $model = new Project;
+            if ($request->dateFrom < date('Y-m-d')) {
+                return back()->with('error', "Date From must be greather than yesterday!");
+            }
+            if ($request->dateTo > $request->dateFrom) {
+                // dd($request->dateTo);
+            } else {
+                return back()->with('error', "Date To must be greather than date From!");
+            }
         }
         // Validasi tanggal
         // dd($request->dateFrom < date('Y-m-d'));
-        if ($request->dateFrom < date('Y-m-d')) {
-        	return back()->with('error', "Date From must be greather than yesterday!");
-        }
-        if ($request->dateTo > $request->dateFrom) {
-        	// dd($request->dateTo);
-        } else {
-        	return back()->with('error', "Date To must be greather than date From!");
-        }
         $model->project_name = $request->prjname;
         $model->description = $request->prjDescription;
         $model->start_datetime = $request->dateFrom;
@@ -149,6 +149,7 @@ class ProjectController extends BaseController
 
     public function view($id)
     {
+
         View::share('menuActive', 1);
         $project = Project::with('userProjects.user')->find($id);
         if ($project) {

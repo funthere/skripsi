@@ -55,7 +55,7 @@ class ChatController extends BaseController
         }
     }
 
-    public function clearing()
+    public function viewClearChat()
     {
         if (auth()->user()->role != "administrator") {
             //kick
@@ -66,7 +66,7 @@ class ChatController extends BaseController
         return view('chat.clearing-chat', compact('projects'));
     }
 
-    public function clearingSave()
+    public function clearChat()
     {
         $all = request()->all();
         $projectId = request('project_id');
