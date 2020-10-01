@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'username' => request('username'),
             'fullname' => request('fullname'),
             'email' => request('email'),
+            'role' => request('role'),
             'password' => bcrypt('Standar123'),
         ]);
         if ($result) {
